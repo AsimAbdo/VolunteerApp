@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "98026665105",
+    "project_id": "volunteer-for-sudan",
+    "storage_bucket": "volunteer-for-sudan.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98026665105:android:6678a9d0db8867d2577b30",
+        "android_client_info": {
+          "package_name": "edu.aau.projects.volunteerapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB544PiV_ywoFCIFgq4j4GDj1n7i0lBX5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98026665105:android:ad9ac05eb2685d4f577b30",
+        "android_client_info": {
+          "package_name": "edu.aau.projects.volunteerforsudan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB544PiV_ywoFCIFgq4j4GDj1n7i0lBX5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

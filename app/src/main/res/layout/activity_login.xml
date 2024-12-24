@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/graylight"
+    tools:context=".view.LoginScreen.LoginActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/login_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            style="@style/Theme.VolunteerApp.mToolbar">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/login_title"
+                style="@style/Theme.VolunteerApp.mToolbarTitleStyle"/>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_l_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/primary"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_et_email_or_name"
+                style="@style/Theme.VolunteerApp.mEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:hint="@string/login_et_email_or_name"
+                android:drawableStart="@drawable/ic_email"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_l_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/primary"
+            android:textColorHint="@color/primary"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_below="@+id/login_l_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_et_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:hint="@string/login_et_password"
+                android:drawableStart="@drawable/ic_lock"
+                android:inputType="textPassword"
+                style="@style/Theme.VolunteerApp.mEditTextStyle" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_btn_login"
+            android:layout_below="@id/login_tv_forget_password"
+            android:layout_alignParentEnd="true"
+            style="@style/Theme.VolunteerApp.mButton"
+            android:background="@drawable/bottun_shape"/>
+
+        <TextView
+            android:id="@+id/login_tv_forget_password"
+            style="@style/Theme.VolunteerApp.mLinkTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_tv_forget_password"
+            android:layout_below="@id/login_l_pass"
+            android:layout_alignParentEnd="true" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/login_btn_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:backgroundTint="@color/blueStart"
+            android:tint="@color/white"
+            android:src="@drawable/ic_add_account"
+            app:shapeAppearanceOverlay="@style/Theme.VolunteerApp.mFloatingActionButton" />
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

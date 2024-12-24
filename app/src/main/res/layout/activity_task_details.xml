@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/graylight"
+    tools:context=".view.DashboardScreen.AdminDashborad.TaskDetailsActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/td_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        style="@style/Theme.VolunteerApp.mToolbar"/>
+
+    <TextView
+        android:id="@+id/td_tv_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Task type"
+        style="@style/Theme.VolunteerApp.mTitleStyle"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@+id/td_toolbar"/>
+
+    <TextView
+        android:id="@+id/td_tv_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Task location"
+        style="@style/Theme.VolunteerApp.mTextStyle"
+        android:layout_below="@+id/td_tv_type"/>
+
+    <TextView
+        android:id="@+id/td_tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Task desc"
+        style="@style/Theme.VolunteerApp.mTextStyle"
+        android:layout_below="@+id/td_tv_location"/>
+
+    <ImageView
+        android:id="@+id/td_iv_papers"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_below="@+id/td_tv_desc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:src="@drawable/ic_no_image"/>
+
+    <ImageView
+        android:id="@+id/td_iv_next"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_alignEnd="@id/td_iv_papers"
+        android:layout_alignTop="@id/td_iv_papers"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="-20dp"
+        android:layout_marginTop="@dimen/_83sdp"
+        android:src="@drawable/ic_next" />
+
+    <ImageView
+        android:id="@+id/td_iv_before"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_alignStart="@id/td_iv_papers"
+        android:layout_alignTop="@id/td_iv_papers"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-20dp"
+        android:layout_marginTop="@dimen/_83sdp"
+        android:src="@drawable/ic_before" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/td_btnAccept"
+            style="@style/Theme.VolunteerApp.mLinearButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/accept" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/td_btnReject"
+            style="@style/Theme.VolunteerApp.mLinearButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/reject" />
+    </LinearLayout>
+
+</RelativeLayout>

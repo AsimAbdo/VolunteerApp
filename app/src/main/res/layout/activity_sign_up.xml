@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/graylight"
+    tools:context=".view.SignUpScreen.SignUpActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/sign_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            style="@style/Theme.VolunteerApp.mToolbar">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/signup_title"
+                style="@style/Theme.VolunteerApp.mToolbarTitleStyle"/>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/sign_l_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/primary"
+                android:layout_marginTop="@dimen/_15sdp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/sign_et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:hint="@string/sign_et_name"
+                    android:drawableStart="@drawable/ic_person"
+                    android:inputType="textPersonName"
+                    style="@style/Theme.VolunteerApp.mEditTextStyle" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/sign_l_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/primary"
+                android:layout_below="@id/sign_l_name"
+                android:layout_marginTop="@dimen/_15sdp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/sign_et_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:hint="@string/sign_et_email"
+                    android:drawableStart="@drawable/ic_email"
+                    android:inputType="textPersonName"
+                    style="@style/Theme.VolunteerApp.mEditTextStyle" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/sign_l_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/primary"
+                android:textColorHint="@color/primary"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_below="@+id/sign_l_email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/sign_et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:hint="@string/login_et_password"
+                    android:drawableStart="@drawable/ic_lock"
+                    android:inputType="textPassword"
+                    style="@style/Theme.VolunteerApp.mEditTextStyle" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/sign_l_pass_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/primary"
+                android:textColorHint="@color/primary"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_below="@+id/sign_l_pass">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/sign_et_password_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:hint="@string/login_et_password"
+                    android:drawableStart="@drawable/ic_lock"
+                    android:inputType="textPassword"
+                    style="@style/Theme.VolunteerApp.mEditTextStyle" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/sign_sp_role"
+                style="@style/Theme.VolunteerApp.mSpinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:entries="@array/sign_sp_roles_entries"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_below="@+id/sign_l_pass_confirm" />
+
+            <ImageView
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_alignEnd="@+id/sign_sp_role"
+                android:layout_alignBottom="@+id/sign_sp_role"
+                android:layout_margin="@dimen/_10sdp"
+                android:src="@drawable/ic_drop_down" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/login_btn_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_btn_sign_up"
+                style="@style/Theme.VolunteerApp.mButton"
+                android:layout_below="@+id/sign_sp_role" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

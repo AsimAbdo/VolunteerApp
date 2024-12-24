@@ -1,0 +1,115 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.VolunteerApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="android:statusBarColor">@color/graylight</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.VolunteerApp" parent="Base.Theme.VolunteerApp" />
+
+    <style name="base" >
+        <item name="android:layout_marginStart">@dimen/_20sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_20sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_10sdp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+    </style>
+
+    <style name="Theme.VolunteerApp.mCardTextViewStyle" parent="base">
+        <item name="android:layout_marginStart">@dimen/_7sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_5sdp</item>
+        <item name="android:layout_marginTop">@dimen/_3sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_3sdp</item>
+    </style>
+
+    <style name="Theme.VolunteerApp.mTitleStyle" parent="base">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:fontFamily">@font/baloo_2</item>
+        <item name="android:layout_marginBottom">@dimen/_20sdp</item>
+    </style>
+
+    <style name="Theme.VolunteerApp.mToolbarTitleStyle" parent="Theme.VolunteerApp.mTitleStyle">
+        <item name="android:textSize">@dimen/_34ssp</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:gravity">start|bottom</item>
+    </style>
+
+    <style name="Theme.VolunteerApp.mTextStyle" parent="base">
+        <item name="android:fontFamily">serif</item>
+    </style>
+
+    <style name="Theme.VolunteerApp.mUpdateText" parent="Theme.VolunteerApp.mTitleStyle">
+        <item name="android:textColor">@color/white</item>
+<!--        <item name="android:background">@color/accent</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/_7sdp</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="Theme.VolunteerApp.mEditTextStyle" parent="base">
+        <item name="android:padding">@dimen/_5sdp</item>
+        <item name="android:drawablePadding">@dimen/_5sdp</item>
+        <item name="android:background">@drawable/et_shape</item>
+        <item name="android:textColor"> @color/primaryDark</item>
+        <item name="android:layout_marginTop">@dimen/_20sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_5sdp</item>
+    </style>
+
+    <style name="Theme.VolunteerApp.mButton" parent="base">
+        <item name="android:layout_marginStart">@dimen/_20sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_20sdp</item>
+        <item name="android:layout_marginTop">@dimen/_20sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_20sdp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:background">@drawable/bottun_shape</item>
+    </style>
+
+    <style name="Theme.VolunteerApp.mLinearButton" parent="Theme.VolunteerApp.mButton">
+        <item name="android:layout_marginStart">@dimen/_20sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_20sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_10sdp</item>
+    </style>
+
+    <style name="Theme.VolunteerApp.mToolbar" >
+        <item name="titleTextColor">@color/primary</item>
+        <item name="android:background">@color/graylight</item>
+    </style>
+
+    <style name="Theme.VolunteerApp.mLinkTextView" parent="base">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textStyle">italic|bold</item>
+        <item name="android:clickable"> true</item>
+        <item name="android:layout_marginTop">@dimen/_15sdp</item>
+        <!--        Trying to make underline -->
+    </style>
+
+    <style name="Theme.VolunteerApp.mImageCard" >
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/_10sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_10sdp</item>
+        <item name="android:background">@drawable/image_shape</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="Theme.VolunteerApp.mSpinnerStyle" parent="base">
+        <item name="android:padding">@dimen/_8sdp</item>
+        <item name="android:background"> @drawable/et_shape</item>
+    </style>
+
+    <style name="Theme.VolunteerApp.license" parent="base">
+        <item name="android:textStyle"> italic</item>
+    </style>
+
+    <style name="Theme.VolunteerApp.mFloatingActionButton">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_10sdp"
+        android:backgroundTint="#FAF2F2"
+        android:layout_margin="@dimen/_7sdp"
+        app:cardCornerRadius="@dimen/_8sdp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/user_tv_name"
+                style="@style/Theme.VolunteerApp.mTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_person"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:text="User name" />
+
+            <TextView
+                android:id="@+id/user_tv_email"
+                style="@style/Theme.VolunteerApp.mTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_tv_name"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="@dimen/_4sdp"
+                android:text="test@gmail.com"
+                android:textSize="@dimen/_13ssp" />
+
+                <TextView
+                    android:id="@+id/user_tv_role"
+                    style="@style/Theme.VolunteerApp.mTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_key"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:layout_below="@id/user_tv_email"
+                    android:text="Volunteer" />
+
+            <TextView
+                    android:id="@+id/user_tv_skills"
+                    style="@style/Theme.VolunteerApp.mTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_liberary"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:layout_below="@id/user_tv_role"
+                    android:text="skills" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_tv_skills">
+
+                <TextView
+                    android:id="@+id/user_tv_loc"
+                    style="@style/Theme.VolunteerApp.mTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:drawableTint="@color/blueEnd"
+                    android:text="Location" />
+
+                <TextView
+                    android:id="@+id/user_tv_jobs"
+                    style="@style/Theme.VolunteerApp.mTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_info"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:layout_weight="1"
+                    android:drawableTint="@color/warning"
+                    android:text="9 tasks" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

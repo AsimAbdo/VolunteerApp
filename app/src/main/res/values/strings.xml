@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">Volunteer App</string>
+    <string name="main_btn_login">Login</string>
+    <string name="main_btn_create">Sign up</string>
+    <string name="app_description">This app is made for Managing Volunteer work in Sudan.\nThis app manages volunteer, Donations, and services.</string>
+    <string name="login_et_email_or_name">User name or Email</string>
+    <string name="login_et_password">Password</string>
+    <string name="login_tv_forget_password">Forget your password?</string>
+    <string name="login_btn_sign_up">Create new Account</string>
+    <string name="login_tv_label">Login Form</string>
+    <string name="sign_et_name">Full name</string>
+    <string name="sign_et_email">email@gmail.com</string>
+    <string name="sign_tv_role_label">Enter the role you want to be</string>
+    <string name="empty_fields">Please Fill all fields</string>
+    <string name="password_doesnt_match">Password does not match</string>
+    <string name="not_connected">Please open Mobile network or connect to wifi to continue</string>
+    <string name="service_seeker">Service Seeker</string>
+    <string name="volunteer">Volunteer</string>
+    <string name="donor">Donor</string>
+    <string name="invalid_email">Invalid Email</string>
+    <string name="invalid_name">Full name is invalid</string>
+    <string name="add_et_username">User Name</string>
+    <string name="add_et_skills">Skills</string>
+    <string name="wrong_validation">Wrong email or password</string>
+    <string name="progress_text">Loading…</string>
+    <string name="un_activated_account">Your account is unactivated,\nCheck your messages to activate it</string>
+    <string name="activate_account_label">We\'ve sent an activation email. Check your inbox.</string>
+    <string name="ss_menu_logout">Log out</string>
+    <string name="user_exception_message">the email is incorrect</string>
+    <string name="user_collisionException">Email is already used</string>
+    <string name="login_title">Login</string>
+    <string name="signup_title">Sign Up</string>
+    <string name="empty_email">Enter email first</string>
+    <string name="rest_password_send_successfully">We\'ve sent a password reset email. Check your inbox.</string>
+    <string name="email_not_used">The entered email is not registered.</string>
+    <string name="upload_title">Upload Task</string>
+    <string name="task_desc">Enter Description</string>
+    <string name="upload_tv_startDate">Tab to select Start Date</string>
+    <string name="upload_tv_endDate">Tab to select End date</string>
+    <string name="btn_submit">Submit</string>
+    <string name="task_loc">Enter Location</string>
+    <string name="startdate_not_selected">Start Date not selected</string>
+    <string name="enddate_not_selected">End Date not selected</string>
+    <string name="taskCreatedSuccessfully">Task Created Successfully</string>
+    <string name="new_task">Not verified yet</string>
+    <string name="header_desc">Volunteer for Your Country</string>
+    <string name="nav_profile">Profile</string>
+    <string name="open_drawer">Open Navigation</string>
+    <string name="close_drawer">Close Navigation</string>
+
+    <string-array name="sign_sp_roles_entries">
+        <item>Select a Role</item>
+        <item>Service Seeker</item>
+        <item>Volunteer</item>
+        <item>Donor</item>
+    </string-array>
+
+    <string-array name="serviceType">
+        <item>Select Service Type</item>
+        <item>Type 1</item>
+        <item>Type 2</item>
+        <item>Type 3</item>
+        <item>Type 4</item>
+        <item>Type 5</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="admin_title">Admin Dashboard</string>
+    <string name="user_dashboard">User Dashboard</string>
+    <string name="admin">Admin</string>
+    <string name="admin_tv_manage_users">Users management</string>
+    <string name="admin_tv_manage_resource">Resource management</string>
+    <string name="admin_tv_manage_task">Tasks Management</string>
+    <string name="admin_tv_manage_report">Display Reports</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+    <string name="vol_tv_available_task">Available Tasks</string>
+    <string name="vol_tv_current_task">Current Tasks</string>
+    <string name="vol_tv_manageSkills">Skills Management</string>
+    <string name="vol_tv_manageAvailability">Manage Availability</string>
+    <string name="btn_add">Add</string>
+    <string name="btn_save">Save</string>
+</resources>
