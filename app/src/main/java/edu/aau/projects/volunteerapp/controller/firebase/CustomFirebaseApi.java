@@ -9,6 +9,8 @@ import com.google.firebase.database.Query;
 
 import org.checkerframework.checker.units.qual.C;
 
+import java.util.Map;
+
 import edu.aau.projects.volunteerapp.model.Admin;
 import edu.aau.projects.volunteerapp.model.Donor;
 import edu.aau.projects.volunteerapp.model.MTask;
@@ -92,5 +94,9 @@ public class CustomFirebaseApi implements FirebaseAccess {
 
     public DatabaseReference getUsers() {
         return GetUsers.getUsers();
+    }
+
+    public Task<Void> updateVolunteer(int volunteerId, Map<String, Object> volunteerData){
+        return UpdateUsersData.updateVolunteer(volunteerId, volunteerData);
     }
 }

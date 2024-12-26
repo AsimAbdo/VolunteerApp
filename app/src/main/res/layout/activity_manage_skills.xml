@@ -28,17 +28,24 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/ms_tv_skills"
+                android:id="@+id/rv_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Theme.VolunteerApp.mTextStyle"/>
+                android:text="@string/currentSkills"
+                style="@style/Theme.VolunteerApp.mTitleStyle"
+                android:layout_below="@+id/ln_skills"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ms_rv_skills"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rv_label" />
 
             <LinearLayout
                 android:id="@+id/ln_skills"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_below="@+id/ms_tv_skills">
+                android:gravity="center_vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
@@ -49,6 +56,7 @@
                         android:id="@+id/ms_et_skills"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_40sdp"
+                        android:hint="@string/ms_et_skills_hint"
                         style="@style/Theme.VolunteerApp.mEditTextStyle"
                         android:layout_marginTop="0dp"
                         android:layout_marginStart="@dimen/_10sdp"
@@ -67,13 +75,14 @@
                     android:layout_marginEnd="@dimen/_5sdp"/>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/ms_btn_save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_save"
-                style="@style/Theme.VolunteerApp.mButton"
-                android:layout_below="@+id/ln_skills"/>
+
         </RelativeLayout>
     </ScrollView>
+    <Button
+        android:id="@+id/ms_btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_save"
+        style="@style/Theme.VolunteerApp.mButton"
+        android:layout_gravity="bottom"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

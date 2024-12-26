@@ -41,7 +41,6 @@ public class VolunteerHomeFragment extends Fragment {
         bin = FragmentVolunteerHomeBinding.inflate(inflater);
         api = CustomFirebaseApi.getInstance();
 
-        List<String> list = new ArrayList<>();
         getVolunteer();
 
         bin.volCvManageSkill.setOnClickListener(new View.OnClickListener() {

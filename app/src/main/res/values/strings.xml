@@ -63,7 +63,6 @@
         <item>Type 4</item>
         <item>Type 5</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="admin_title">Admin Dashboard</string>
     <string name="user_dashboard">User Dashboard</string>
@@ -80,4 +79,8 @@
     <string name="vol_tv_manageAvailability">Manage Availability</string>
     <string name="btn_add">Add</string>
     <string name="btn_save">Save</string>
+    <string name="currentSkills">Current Skills</string>
+    <string name="ms_et_skills_hint">Type to add a Skill</string>
+    <string name="op_done">Done</string>
+    <!--    <string name="redundantskill">The Skill Already exists</string>-->
 </resources>

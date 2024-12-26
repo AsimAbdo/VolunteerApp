@@ -1,6 +1,7 @@
 package edu.aau.projects.volunteerapp.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Volunteer {
@@ -49,6 +50,13 @@ public class Volunteer {
         }
         skill = skill.substring(0, skill.length() - 1);
         return skill;
+    }
+
+    public static List<String> getFromFormatted(String skills){
+        List<String> list = new ArrayList<>();
+        String[] res = skills.split("\\|");
+        list.addAll(Arrays.asList(res));
+        return list;
     }
     public void setSkills(List<String> skills) {
         this.skills = skills;
