@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/graylight"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.DashboardScreen.ProfileFragment">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_iv_image"
+        style="@style/Theme.VolunteerApp.mImageCard"
+        android:layout_width="@dimen/_160sdp"
+        android:layout_height="@dimen/_160sdp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/male_icon"
+        android:scaleType="centerCrop"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:shapeAppearanceOverlay="@style/Theme.VolunteerApp.mFloatingActionButton" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_iv_pickImage"
+        android:layout_width="@dimen/_34sdp"
+        android:layout_height="@dimen/_34sdp"
+        android:src="@drawable/ic_camera"
+        android:scaleType="center"
+        app:shapeAppearance="@style/Theme.VolunteerApp.mFloatingActionButton"
+        style="@style/Theme.VolunteerApp.mImageCard"
+        android:backgroundTint="@color/primary"
+        android:layout_alignBottom="@+id/profile_iv_image"
+        android:layout_alignEnd="@+id/profile_iv_image"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"/>
+
+    <EditText
+        android:id="@+id/profile_et_username"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:hint="@string/add_et_username"
+        android:enabled="false"
+        android:drawableStart="@drawable/ic_person"
+        android:drawablePadding="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_below="@id/profile_iv_image" />
+
+    <ImageView
+        android:id="@+id/profile_iv_username_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_edit"
+        android:layout_alignBottom="@id/profile_et_username"
+        android:layout_alignEnd="@+id/profile_et_username"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"/>
+
+    <EditText
+        android:id="@+id/profile_et_phone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:hint="@string/phone_hint"
+        android:enabled="false"
+        android:drawableStart="@drawable/ic_location"
+        android:drawablePadding="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_below="@id/profile_et_username"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+    <ImageView
+        android:id="@+id/profile_iv_phone_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_edit"
+        android:layout_alignBottom="@id/profile_et_phone"
+        android:layout_alignEnd="@+id/profile_et_phone"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"/>
+    
+    <EditText
+        android:id="@+id/profile_et_address"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:hint="@string/address_hint"
+        android:enabled="false"
+        android:drawableStart="@drawable/ic_location"
+        android:drawablePadding="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_below="@id/profile_et_phone"
+        android:layout_marginVertical="@dimen/_10sdp"/>
+
+    <ImageView
+        android:id="@+id/profile_iv_adress_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_edit"
+        android:layout_alignBottom="@id/profile_et_address"
+        android:layout_alignEnd="@+id/profile_et_address"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"/>
+
+    <TextView
+        android:id="@+id/profile_tv_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Theme.VolunteerApp.mTitleStyle"
+        android:text="@string/email_text"
+        android:textColor="@color/textColor"
+        android:layout_below="@+id/profile_et_address" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_tv_email">
+
+        <TextView
+            android:id="@+id/profile_tv_dateJoined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            style="@style/Theme.VolunteerApp.mTextStyle"
+            android:text="@string/profile_tv_dateJoined"
+            android:layout_marginEnd="@dimen/_10sdp"/>
+
+        <TextView
+            android:id="@+id/profile_tv_role"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/profile_tv_role"
+            android:layout_marginStart="@dimen/_10sdp"
+            style="@style/Theme.VolunteerApp.mTextStyle"/>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/profile_btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_save"
+        style="@style/Theme.VolunteerApp.mButton"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

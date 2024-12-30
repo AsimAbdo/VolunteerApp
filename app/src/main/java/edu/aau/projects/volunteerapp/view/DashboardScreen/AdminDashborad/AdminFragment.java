@@ -19,7 +19,7 @@ public class AdminFragment extends Fragment {
     }
 
 
-    public static AdminFragment newInstance() {
+    public static AdminFragment newInstance(int roleId, String role) {
         return new AdminFragment();
     }
 

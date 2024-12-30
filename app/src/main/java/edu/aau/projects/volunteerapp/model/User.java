@@ -1,5 +1,8 @@
 package edu.aau.projects.volunteerapp.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class User {
     private String userId;
     private String name;
@@ -99,5 +102,38 @@ public class User {
 
     public String getEmail_password() {
         return email_password;
+    }
+
+    public Map<String, Object> toMap(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("address", address);
+        map.put("name", name);
+        map.put("password", password);
+        map.put("role", role);
+        map.put("email", email);
+        map.put("userId", userId);
+        map.put("email_password", email_password);
+        map.put("phone", phone);
+        map.put("dateJoined", dateJoined);
+        return map;
+    }
+
+    public boolean isEqual(User user) {
+        return name.equals(user.getName())
+                && address.equals(user.getAddress())
+                && phone.equals(user.getPhone());
+    }
+
+    public User copy() {
+        User user = new User();
+        user.setUserId(userId);
+        user.setRole(role);
+        user.setPhone(phone);
+        user.setEmail(email);
+        user.setName(name);
+        user.setAddress(address);
+        user.setDateJoined(dateJoined);
+        user.setPassword(password);
+        return user;
     }
 }

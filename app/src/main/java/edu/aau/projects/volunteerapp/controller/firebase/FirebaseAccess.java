@@ -4,7 +4,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-interface FirebaseAccess {
+public interface FirebaseAccess {
     String ROOT = "database";
     String COUNTERS_TB_NAME = "counters";
     String USERS_TB_NAME = "Users";

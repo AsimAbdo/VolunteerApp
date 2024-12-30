@@ -1,0 +1,180 @@
+package edu.aau.projects.volunteerapp.view.DashboardScreen;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import edu.aau.projects.volunteerapp.R;
+import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
+import edu.aau.projects.volunteerapp.controller.firebase.FirebaseAccess;
+import edu.aau.projects.volunteerapp.databinding.FragmentProfileBinding;
+import edu.aau.projects.volunteerapp.model.Admin;
+import edu.aau.projects.volunteerapp.model.Donor;
+import edu.aau.projects.volunteerapp.model.ServiceSeeker;
+import edu.aau.projects.volunteerapp.model.User;
+import edu.aau.projects.volunteerapp.model.Volunteer;
+import edu.aau.projects.volunteerapp.utils.UiUtils;
+
+public class ProfileFragment extends Fragment {
+
+//    private static final String ROLE_ID_EXTRA = "roleId";
+    private static final String ROLE_EXTRA = "role";
+    private int roleId;
+    private String role;
+    FragmentProfileBinding bin;
+    CustomFirebaseApi api;
+    User currentUser, original;
+
+    public ProfileFragment() {
+        // Required empty public constructor
+    }
+
+    public static ProfileFragment newInstance(String role) {
+        ProfileFragment fragment = new ProfileFragment();
+        Bundle bun = new Bundle();
+
+        bun.putString(ROLE_EXTRA, role);
+//        bun.putInt(ROLE_ID_EXTRA, roleId);
+
+        fragment.setArguments(bun);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        api = CustomFirebaseApi.getInstance();
+
+        Bundle args = getArguments();
+        if (args != null){
+            role = args.getString(ROLE_EXTRA, "");
+//            roleId = args.getInt(ROLE_EXTRA, -1);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        bin = FragmentProfileBinding.inflate(inflater);
+        api.getUserInfo().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    User user = null;
+                    for (DataSnapshot child : snapshot.getChildren()) {
+                        if (role.equals("Service Seeker")) {
+                            ServiceSeeker serviceSeeker = child.getValue(ServiceSeeker.class);
+                            user = serviceSeeker.getUser();
+                            roleId = serviceSeeker.getSeekerId();
+                        }
+                        else if (role.equals("Admin")) {
+                            Admin admin = child.getValue(Admin.class);
+                            user = admin.getUser();
+                            roleId = admin.getAdminId();
+                        }
+                        else if (role.equals("Volunteer")) {
+                            Volunteer volunteer = child.getValue(Volunteer.class);
+                            user = volunteer.getUser();
+                            roleId = volunteer.getV_id();
+                        }
+                        else if (role.equals("Donor")) {
+                            Donor donor = child.getValue(Donor.class);
+                            user = donor.getUser();
+                            roleId = donor.getDonorId();
+                        }
+                        else if (role.equals("Team Leader")) {
+                            Donor donor = child.getValue(Donor.class);
+                            user = donor.getUser();
+                            roleId = donor.getDonorId();
+                        }
+                    }
+                    original = user;
+                    currentUser = user.copy();
+                    putData(original);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return bin.getRoot();
+    }
+
+    private void putData(User user){
+        bin.profileEtUsername.setText(user.getName());
+        bin.profileEtAddress.setText(user.getAddress());
+        bin.profileEtPhone.setText(user.getPhone());
+        bin.profileTvDateJoined.setText(user.getDateJoined());
+        bin.profileTvRole.setText(user.getRole());
+        bin.profileTvEmail.setText(user.getEmail());
+
+        enableFields(bin.profileIvAdressEdit, bin.profileEtAddress);
+        enableFields(bin.profileIvPhoneEdit, bin.profileEtPhone);
+        enableFields(bin.profileIvUsernameEdit, bin.profileEtUsername);
+
+        bin.profileBtnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String address = bin.profileEtAddress.getText().toString();
+                String phone = bin.profileEtPhone.getText().toString();
+                String username = bin.profileEtUsername.getText().toString();
+                currentUser.setAddress(address);
+                currentUser.setPhone(phone);
+                currentUser.setName(username);
+                if (! currentUser.isEqual(original)){
+                    UiUtils.showProgressbar(getActivity());
+                    api.updateUser(currentUser, roleId).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            UiUtils.dismissDialog();
+                            if (task.isSuccessful()){
+                                UiUtils.makeToast(R.string.op_done, getContext());
+                            }
+                            else {
+                                UiUtils.makeToast(task.getException().getMessage(), getContext());
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    private void enableFields(ImageView editImage, EditText editText){
+        editImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isEnable = editText.isEnabled();
+                if (isEnable)
+                    editImage.setImageResource(R.drawable.ic_edit);
+                else
+                    editImage.setImageResource(R.drawable.ic_check);
+                editText.setEnabled(! isEnable);
+            }
+        });
+    }
+}

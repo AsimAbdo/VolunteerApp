@@ -22,7 +22,6 @@ public class CustomFirebaseApi implements FirebaseAccess {
 
     public static CustomFirebaseApi api;
     private CustomFirebaseApi() {
-
     }
 
     public static CustomFirebaseApi getInstance() {
@@ -98,5 +97,9 @@ public class CustomFirebaseApi implements FirebaseAccess {
 
     public Task<Void> updateVolunteer(int volunteerId, Map<String, Object> volunteerData){
         return UpdateUsersData.updateVolunteer(volunteerId, volunteerData);
+    }
+
+    public Task<Void> updateUser(User user, int roleId){
+        return UpdateUsers.updateUser(user, roleId);
     }
 }

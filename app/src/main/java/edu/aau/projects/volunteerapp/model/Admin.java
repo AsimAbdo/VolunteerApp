@@ -8,6 +8,10 @@ public class Admin {
         user = new User();
     }
 
+    public Admin(User user) {
+        this.user = user;
+    }
+
     public int getAdminId() {
         return adminId;
     }

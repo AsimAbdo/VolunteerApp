@@ -24,7 +24,7 @@ public class GetUsers implements FirebaseAccess {
         else if (role.equals("Volunteer"))
             query = volunteersRef.orderByChild("user/userId").equalTo(userId);
         else if (role.equals("Admin"))
-            query = serviceSeekersRef.orderByChild("user/userId").equalTo(userId);
+            query = adminsRef.orderByChild("user/userId").equalTo(userId);
 //        else
 //            query = serviceSeekersRef.orderByChild("user/userId").equalTo(userId);
         return query;

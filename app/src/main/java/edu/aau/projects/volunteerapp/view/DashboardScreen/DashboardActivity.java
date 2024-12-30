@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,8 +35,6 @@ public class DashboardActivity extends BaseActivity implements NavigationView.On
     ActionBarDrawerToggle toggle;
     CustomFirebaseApi api;
     String role = "";
-//    ServiceSeeker currentAdmin;
-//    ServiceSeeker currentTeamLeader;
 
 
     public static Intent makeIntent(Context context){
@@ -84,13 +83,20 @@ public class DashboardActivity extends BaseActivity implements NavigationView.On
             api.logout();
             startActivity(MainActivity.makeIntent(this));
             finish();
+        } else if (item.getItemId() == R.id.nav_profile) {
+            viewHeader(false);
+            pushFragment(this, ProfileFragment.newInstance(role), bin.dashboardContainer.getId(), false);
         }
+        if (bin.getRoot().isDrawerOpen(GravityCompat.START))
+            bin.getRoot().closeDrawer(GravityCompat.START);
         return false;
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        viewHeader(true);
 
         if (role.equals(getString(R.string.service_seeker))) {
             pushFragment(this, new ServiceSeekerHomeFragment(), bin.dashboardContainer.getId(), false);
@@ -104,6 +110,17 @@ public class DashboardActivity extends BaseActivity implements NavigationView.On
         }
         else if (role.equals(getString(R.string.donor))) {
 
+        }
+    }
+
+    private void viewHeader(boolean visible){
+        if (visible){
+            bin.dashTitle.setVisibility(View.VISIBLE);
+            bin.dashIv.setVisibility(View.VISIBLE);
+        }
+        else {
+            bin.dashTitle.setVisibility(View.GONE);
+            bin.dashIv.setVisibility(View.GONE);
         }
     }
 }
