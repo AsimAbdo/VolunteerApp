@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/graylight"
+    tools:context=".view.DashboardScreen.VolunteerDashboard.CurrentTasksActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/ct_toolbar"
+        style="@style/Theme.VolunteerApp.mToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/ct_sp_task_status"
+        style="@style/Theme.VolunteerApp.mEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:entries="@array/task_filter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ct_toolbar" />
+
+    <ImageView
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:src="@drawable/ic_drop_down"
+        app:layout_constraintBottom_toBottomOf="@+id/ct_sp_task_status"
+        app:layout_constraintEnd_toEndOf="@+id/ct_sp_task_status"
+        app:layout_constraintTop_toTopOf="@+id/ct_sp_task_status" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ct_rv_currentTasks"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ct_sp_task_status" />
+</androidx.constraintlayout.widget.ConstraintLayout>

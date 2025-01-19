@@ -7,8 +7,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
-import org.checkerframework.checker.units.qual.C;
-
 import java.util.Map;
 
 import edu.aau.projects.volunteerapp.model.Admin;
@@ -82,6 +80,9 @@ public class CustomFirebaseApi implements FirebaseAccess {
     public Query getTasks(int seekerId){
         return TaskOperations.getTasks(seekerId);
     }
+    public Query getCurrentTasks(int volunteerId){
+        return TaskOperations.getCurrentTasks(volunteerId);
+    }
 
     public Query getTasks(String status){
         return TaskOperations.getTasks(status);
@@ -101,5 +102,9 @@ public class CustomFirebaseApi implements FirebaseAccess {
 
     public Task<Void> updateUser(User user, int roleId){
         return UpdateUsers.updateUser(user, roleId);
+    }
+
+    public Task<Void> updateTask(MTask task) {
+        return TaskOperations.updateTask(task);
     }
 }

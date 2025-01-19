@@ -17,6 +17,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Spinner
+        android:id="@+id/sp_filter"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        app:layout_constraintTop_toBottomOf="@+id/viewToolbar" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/view_rv_data"
         android:layout_width="0dp"
@@ -24,5 +30,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/sp_filter" />
 </androidx.constraintlayout.widget.ConstraintLayout>

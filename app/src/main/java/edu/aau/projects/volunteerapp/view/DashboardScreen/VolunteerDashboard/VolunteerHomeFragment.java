@@ -13,8 +13,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
 import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
 import edu.aau.projects.volunteerapp.databinding.FragmentVolunteerHomeBinding;
 import edu.aau.projects.volunteerapp.model.Volunteer;
@@ -43,13 +41,19 @@ public class VolunteerHomeFragment extends Fragment {
 
         getVolunteer();
 
+        bin.volCvAvailableTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(AvailableTasksActivity.makeIntent(getContext(), volunteer.getV_id()));
+            }
+        });
         bin.volCvManageSkill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().startActivity(
                         ManageSkillsActivity.makeIntent(
                                 getContext(),
-                                volunteer.getV_id(),volunteer.getFormattedSkills()
+                                volunteer.getV_id(),volunteer.toFormattedForm()
                         )
                 );
             }

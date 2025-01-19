@@ -42,7 +42,7 @@ public class Volunteer {
         return skills;
     }
 
-    public String getFormattedSkills(){
+    public String toFormattedForm(){
         String skill = "";
         for (String sk :
                 skills) {

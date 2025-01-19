@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/graylight"
+    tools:context=".view.DashboardScreen.VolunteerDashboard.AvailableTasksActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/at_toolbar"
+        style="@style/Theme.VolunteerApp.mToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/at_sv_area"
+        style="@style/Theme.VolunteerApp.mEditTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40sdp"
+        android:drawableStart="@drawable/ic_location"
+        android:drawablePadding="@dimen/_5sdp"
+        android:hint="@string/address_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/at_toolbar" />
+
+    <ImageView
+        android:id="@+id/at_iv_search"
+        android:layout_width="@dimen/_27sdp"
+        android:layout_height="@dimen/_27sdp"
+        android:src="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@+id/at_sv_area"
+        app:layout_constraintEnd_toEndOf="@+id/at_sv_area"
+        app:layout_constraintTop_toTopOf="@+id/at_sv_area" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/at_rv_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/at_sv_area" />
+</androidx.constraintlayout.widget.ConstraintLayout>

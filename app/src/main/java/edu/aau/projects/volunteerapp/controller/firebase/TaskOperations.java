@@ -36,7 +36,15 @@ public class TaskOperations implements FirebaseAccess {
         return tasksRef.orderByChild("seekerId").equalTo(seekerId);
     }
 
+    public static Query getCurrentTasks(int volunteerId){
+        return tasksRef.orderByChild("assignedToId").equalTo(volunteerId);
+    }
+
     public static Query getTasks(String status) {
-        return tasksRef.orderByChild("status").equalTo(status);
+        return status != null && !status.equals("") ? tasksRef.orderByChild("status").equalTo(status): tasksRef.orderByKey();
+    }
+
+    public static Task<Void> updateTask(MTask task) {
+        return tasksRef.child(String.valueOf(task.getTaskId())).updateChildren(task.toMap());
     }
 }

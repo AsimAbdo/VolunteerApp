@@ -60,7 +60,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersHolder>
             bin.userTvName.setText(volunteer.getUser().getName());
             bin.userTvJobs.setText(String.valueOf(volunteer.getCompletedTasks()));
             bin.userTvRole.setText(volunteer.getUser().getRole());
-            bin.userTvSkills.setText(volunteer.getFormattedSkills());
+            bin.userTvSkills.setText(volunteer.toFormattedForm());
             bin.userTvLoc.setText(volunteer.getUser().getAddress());
         }
     }

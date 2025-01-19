@@ -1,5 +1,8 @@
 package edu.aau.projects.volunteerapp.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MTask {
     private int taskId;
     private int seekerId;
@@ -114,4 +117,18 @@ public class MTask {
         this.warehouseId = warehouseId;
     }
 
+    public Map<String, Object> toMap(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("startDate", startDate);
+        map.put("endDate", endDate);
+        map.put("taskId", taskId);
+        map.put("assignedTo", assignedTo);
+        map.put("assignedToId", assignedToId);
+        map.put("status", status);
+        map.put("seekerId", seekerId);
+        map.put("warehouseId", warehouseId);
+        map.put("fundId", fundId);
+        map.put("description", description);
+        return map;
+    }
 }
