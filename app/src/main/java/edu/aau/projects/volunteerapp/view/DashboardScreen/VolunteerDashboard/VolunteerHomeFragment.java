@@ -41,6 +41,13 @@ public class VolunteerHomeFragment extends Fragment {
 
         getVolunteer();
 
+        bin.volCvCurrentTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(CurrentTasksActivity.makeIntent(getContext(), volunteer.getV_id()));
+            }
+        });
+
         bin.volCvAvailableTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

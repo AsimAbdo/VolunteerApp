@@ -60,7 +60,7 @@ public class AdminManageActivity extends BaseActivity {
 
         api = CustomFirebaseApi.getInstance();
         adapter = new UsersAdapter();
-        taskAdapter = new TaskV2Adapter();
+        taskAdapter = new TaskV2Adapter(tasks, TaskV2Adapter.TASK_VIEW);
 
         bin.viewRvData.setLayoutManager(new GridLayoutManager(this, 1));
         bin.viewRvData.setHasFixedSize(true);
@@ -79,6 +79,7 @@ public class AdminManageActivity extends BaseActivity {
             bin.spFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    taskAdapter.setShowAcceptRejectButtons(position);
                     getTasks(parent.getSelectedItem().toString());
                 }
 

@@ -110,5 +110,8 @@
     <string name="ct_tv_providedPrice">Provided Price</string>
     <string name="ct_btn_postUpdate">Post Update</string>
     <string name="ct_btn_taskFinished">Finish the Task</string>
+    <string name="btn_provide">Provide</string>
+    <string name="donor_tv_donate">Donate</string>
+    <string name="donor_tv_viewPriviousDonates">Privious Donatations</string>
     <!--    <string name="redundantskill">The Skill Already exists</string>-->
 </resources>

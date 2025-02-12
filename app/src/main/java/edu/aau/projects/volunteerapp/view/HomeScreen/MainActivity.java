@@ -4,8 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
 import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
 import edu.aau.projects.volunteerapp.databinding.ActivityMainBinding;
+import edu.aau.projects.volunteerapp.model.Admin;
+import edu.aau.projects.volunteerapp.model.User;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.DashboardActivity;
 import edu.aau.projects.volunteerapp.view.LoginScreen.LoginActivity;
@@ -31,7 +40,6 @@ public class MainActivity extends BaseActivity {
         setContentView(bin.getRoot());
 
         api = CustomFirebaseApi.getInstance();
-
         if (api.getCurrentUser() != null && api.getCurrentUser().isEmailVerified()) {
             startActivity(DashboardActivity.makeIntent(this));
             finish();

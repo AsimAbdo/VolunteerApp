@@ -55,6 +55,12 @@ public class BaseActivity extends LogActivity {
         }
         return false;
     }
+    public void makeToast(String msg){
+        UiUtils.makeToast(msg, this);
+    }
+    public void makeToast(int msg){
+        UiUtils.makeToast(msg, this);
+    }
 
     private boolean checkNetworkAvailable(){
         boolean mobileNet = false;

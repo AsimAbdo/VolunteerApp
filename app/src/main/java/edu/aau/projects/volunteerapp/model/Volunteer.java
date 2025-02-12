@@ -44,11 +44,11 @@ public class Volunteer {
 
     public String toFormattedForm(){
         String skill = "";
-        for (String sk :
-                skills) {
-            skill += sk + "|";
+        for (int i = 0; i < skills.size(); i++) {
+            skill += skills.get(i);
+            if (i != skills.size() - 1)
+                skill += "|";
         }
-        skill = skill.substring(0, skill.length() - 1);
         return skill;
     }
 

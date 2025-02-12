@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/graylight"
-    tools:context=".view.DashboardScreen.VolunteerDashboard.CurrentTasksActivity">
+    tools:context=".view.DashboardScreen.AdminDashborad.ResourcesActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/ct_toolbar"
+        android:id="@+id/res_toolbar"
         style="@style/Theme.VolunteerApp.mToolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
@@ -16,13 +16,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ct_rv_currentTasks"
-        android:layout_width="match_parent"
+        android:id="@+id/fund_rv"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ct_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/res_toolbar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fund_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add"
+        android:layout_margin="@dimen/_15sdp"
+        app:shapeAppearanceOverlay="@style/Theme.VolunteerApp.mFloatingActionButton"
+        android:backgroundTint="@color/blueStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

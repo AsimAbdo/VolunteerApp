@@ -37,6 +37,13 @@ public class AdminFragment extends Fragment {
             }
         });
 
+        bin.adminResources.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(ResourcesActivity.makeIntent(getContext(), 1));
+            }
+        });
+
         bin.adminTasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
