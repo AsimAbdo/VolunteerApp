@@ -3,7 +3,6 @@ package edu.aau.projects.volunteerapp.controller.firebase;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
@@ -45,5 +44,9 @@ public class GetUsers implements FirebaseAccess {
 
     public static DatabaseReference getUsers() {
         return volunteersRef;
+    }
+
+    public static Query getVolunteer(int volunteerId) {
+        return volunteersRef.orderByChild("v_id").equalTo(volunteerId);
     }
 }

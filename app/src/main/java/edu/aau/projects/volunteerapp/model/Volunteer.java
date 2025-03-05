@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Volunteer {
+public class Volunteer implements CashFundHolder {
     private int v_id;
-    private int u_id;
     private User user;
     private List<String> skills;
     private String availability;
     private int completedTasks;
+    private int teamLeader = 0;
+    private CashFund cashFund;
 
     public Volunteer() {
         this.skills = new ArrayList<>();
@@ -33,10 +34,6 @@ public class Volunteer {
     public User getUser() {
         return user;
     }
-
-//    public void setU_id(int u_id) {
-//        this.u_id = u_id;
-//    }
 
     public List<String> getSkills() {
         return skills;
@@ -87,5 +84,30 @@ public class Volunteer {
                 ", availability='" + availability + '\'' +
                 ", completedTasks=" + completedTasks +
                 '}';
+    }
+
+    public CashFund getCashFund() {
+        return cashFund;
+    }
+
+    public void setTeamLeader(int teamLeader) {
+        this.teamLeader = teamLeader;
+    }
+
+    public int getTeamLeader() {
+        return teamLeader;
+    }
+
+    public void createCashFund() {
+        this.cashFund = getCashFundData();
+    }
+    @Override
+    public CashFund getCashFundData() {
+        CashFund cashFund = new CashFund();
+        cashFund.setBalance(0.0);
+        cashFund.setFundName(this.getUser().getName().concat(" Cash Fund"));
+        cashFund.setOwnerType("Individual");
+        cashFund.setOwnerId(getV_id());
+        return cashFund;
     }
 }

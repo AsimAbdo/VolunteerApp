@@ -2,18 +2,27 @@ package edu.aau.projects.volunteerapp.view.DashboardScreen.AdminDashborad;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import edu.aau.projects.volunteerapp.R;
 import edu.aau.projects.volunteerapp.databinding.FragmentAdminBinding;
 import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
+import edu.aau.projects.volunteerapp.model.Admin;
 
 public class AdminFragment extends Fragment {
     FragmentAdminBinding bin;
     CustomFirebaseApi api;
 
+    Admin admin;
     public AdminFragment() {
         // Required empty public constructor
     }
@@ -30,24 +39,39 @@ public class AdminFragment extends Fragment {
         bin = FragmentAdminBinding.inflate(inflater);
         api = CustomFirebaseApi.getInstance();
 
+        api.getUserInfo().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for (DataSnapshot child : snapshot.getChildren()) {
+                        admin = child.getValue(Admin.class);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         bin.adminUsers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(AdminManageActivity.makeIntent(getContext(), 1));
+                getActivity().startActivity(AdminManageActivity.makeIntent(getContext(), admin.getAdminId(), 1));
             }
         });
 
         bin.adminResources.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(ResourcesActivity.makeIntent(getContext(), 1));
+                getActivity().startActivity(ResourcesActivity.makeIntent(getContext(), getString(R.string.individual), 1));
             }
         });
 
         bin.adminTasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(AdminManageActivity.makeIntent(getContext(), 2));
+                getActivity().startActivity(AdminManageActivity.makeIntent(getContext(), admin.getAdminId(), 2));
             }
         });
         return bin.getRoot();

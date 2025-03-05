@@ -31,8 +31,10 @@ import edu.aau.projects.volunteerapp.model.MTask;
 import edu.aau.projects.volunteerapp.model.Volunteer;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
+import edu.aau.projects.volunteerapp.view.DashboardScreen.ServiceSeekerDashboard.UploadRequestActivity;
 
 public class AdminManageActivity extends BaseActivity {
+    private static final String ADMIN_ID_KEY = "adminId";
     ActivityViewDetailsBinding bin;
     private static final String DATA_TYPE_KEY = "data_type";
     private int dataType = -1;
@@ -43,8 +45,10 @@ public class AdminManageActivity extends BaseActivity {
     List<Volunteer> volunteers;
     List<MTask> tasks;
 
-    public static Intent makeIntent(Context context, int dataType){
-        return new Intent(context, AdminManageActivity.class).putExtra(DATA_TYPE_KEY, dataType);
+    public static Intent makeIntent(Context context, int adminId, int dataType){
+        return new Intent(context, AdminManageActivity.class)
+                .putExtra(ADMIN_ID_KEY, adminId)
+                .putExtra(DATA_TYPE_KEY, dataType);
     }
 
     @Override
@@ -88,12 +92,25 @@ public class AdminManageActivity extends BaseActivity {
 
                 }
             });
+            bin.fabCreateTask.setVisibility(View.VISIBLE);
+            bin.fabCreateTask.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UploadRequestActivity.makeIntent(getBaseContext(), 0);
+                }
+            });
 
         }
     }
 
     private void getUsers(){
         bin.viewRvData.setAdapter(adapter);
+        adapter.setOnItemClickListener(new OnAcceptRejectClickListener() {
+            @Override
+            public void onCLick(MTask task, int accept) {
+                UserDetailsActivity.makeIntent(getBaseContext(), accept);
+            }
+        });
 
         volunteers = new ArrayList<>();
         UiUtils.showProgressbar(this);

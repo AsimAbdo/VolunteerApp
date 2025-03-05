@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/graylight"
+    tools:context=".view.DashboardScreen.AdminDashborad.CreateAccountActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/account_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        style="@style/Theme.VolunteerApp.mToolbar" />
+
+    <Spinner
+        android:id="@+id/account_sp_bankName"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:entries="@array/bank_name_entries"
+        android:layout_below="@id/account_toolbar"
+        style="@style/Theme.VolunteerApp.mEditTextStyle"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/account_etl_bankName"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/account_sp_bankName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/account_et_bank_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:inputType="number"
+            android:hint="@string/account_et_accountNameHint"
+            style="@style/Theme.VolunteerApp.mEditTextStyle"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/account_etl_account_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/account_etl_bankName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/account_et_account_number"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:inputType="number"
+            android:hint="@string/account_et_accountNumberHint"
+            style="@style/Theme.VolunteerApp.mEditTextStyle"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/account_etl_IBAN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/account_etl_account_number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/account_et_IBAN"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:inputType="number"
+            android:hint="@string/account_et_ibanHint"
+            style="@style/Theme.VolunteerApp.mEditTextStyle"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_submit"
+        style="@style/Theme.VolunteerApp.mButton"
+        android:layout_below="@id/account_etl_IBAN"/>
+</RelativeLayout>

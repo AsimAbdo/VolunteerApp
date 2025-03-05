@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.aau.projects.volunteerapp.model.User;
+import edu.aau.projects.volunteerapp.model.Volunteer;
 
 public class UpdateUsers implements FirebaseAccess {
     private static String usersPath = "/" + usersRef.getKey() + "/";
@@ -42,5 +43,10 @@ public class UpdateUsers implements FirebaseAccess {
                 break;
         }
         return path;
+    }
+
+    public static void updateToTeamLeader(Volunteer volunteer) {
+        volunteer.setTeamLeader(1);
+        volunteersRef.child(String.valueOf(volunteer.getV_id())).setValue(volunteer);
     }
 }

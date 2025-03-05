@@ -55,6 +55,13 @@
         <item>Donor</item>
     </string-array>
 
+    <string-array name="bank_name_entries">
+        <item>Omdurman Bank</item>
+        <item>Faisal Bank</item>
+        <item>Al Khortoum Bank</item>
+        <item>Other</item>
+    </string-array>
+
     <string-array name="serviceType">
         <item>Select Service Type</item>
         <item>Type 1</item>
@@ -113,5 +120,15 @@
     <string name="btn_provide">Provide</string>
     <string name="donor_tv_donate">Donate</string>
     <string name="donor_tv_viewPriviousDonates">Privious Donatations</string>
+    <string name="account_et_accountNumberHint">Enter Account Number</string>
+    <string name="account_et_ibanHint">Enter IBAN</string>
+    <string name="account_et_accountNameHint">Enter Bank Name</string>
+    <string name="acItem_tv_IBAN">"IBAN : "</string>
+    <string name="completedTasks">"Completed Tasks : "</string>
+    <string name="availability">"Availability : "</string>
+    <string name="balance">"Balance : "</string>
+    <string name="upgradeToTeamLeader">Upgrade to Team Leader</string>
+    <string name="individual">Individual</string>
+    <string name="team">Team</string>
     <!--    <string name="redundantskill">The Skill Already exists</string>-->
 </resources>

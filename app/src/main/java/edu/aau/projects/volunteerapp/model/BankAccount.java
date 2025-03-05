@@ -7,7 +7,7 @@ public class BankAccount {
     private String bankName;
     private String accountNumber;
     private String IBAN;
-    private String balance;
+    private double balance;
 
     public BankAccount() {
     }
@@ -60,11 +60,11 @@ public class BankAccount {
         this.IBAN = IBAN;
     }
 
-    public String getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 }

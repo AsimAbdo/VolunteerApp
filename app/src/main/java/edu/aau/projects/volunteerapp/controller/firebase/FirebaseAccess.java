@@ -34,6 +34,8 @@ public interface FirebaseAccess {
     DatabaseReference adminsRef = DATABASE_REFERENCE.child(ADMINS_TB_NAME);
     DatabaseReference teamLeadersRef = DATABASE_REFERENCE.child(TEAM_LEADERS_TB_NAME);
     DatabaseReference tasksRef = DATABASE_REFERENCE.child(TASKS_TB_NAME);
+    DatabaseReference cashFundsRef = DATABASE_REFERENCE.child(CASH_FUNDS_TB_NAME);
+    DatabaseReference bankAccountsRef = DATABASE_REFERENCE.child(BANK_ACCOUNTS_TB_NAME);
 
 
 }

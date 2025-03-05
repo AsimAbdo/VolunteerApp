@@ -14,6 +14,7 @@ import edu.aau.projects.volunteerapp.model.Volunteer;
 
 public class InsertUsers implements FirebaseAccess {
 
+    private static final String TEAM_LEADER_COUNTER = "teamLeaderCounter";
     private static String volunteerCounter = "volunteerCounter";
     private static String serviceSeekerCounter = "serviceSeekerCounter";
     private static String donorCounter = "donorCounter";
@@ -35,6 +36,8 @@ public class InsertUsers implements FirebaseAccess {
                     volId = task.getResult().getValue(Integer.class) + 1;
                 volunteer.setV_id(volId);
                 volunteersRef.child(String.valueOf(volunteer.getV_id())).setValue(volunteer);
+                volunteer.createCashFund();
+                CashFundOperation.insertCashFund(volunteer.getCashFund());
                 Counter.updateCounter(volunteerCounter, volId);
             }
         });
@@ -62,7 +65,9 @@ public class InsertUsers implements FirebaseAccess {
                 if (task.getResult().getValue(Integer.class) != null)
                     adminId = task.getResult().getValue(Integer.class) + 1;
                 admin.setAdminId(adminId);
+                admin.createCashFund();
                 adminsRef.child(String.valueOf(adminId)).setValue(admin);
+                CashFundOperation.insertCashFund(admin.getCashFund());
                 Counter.updateCounter(adminCounter, adminId);
             }
         });

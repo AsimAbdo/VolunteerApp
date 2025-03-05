@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_4sdp"
+        android:layout_marginHorizontal="@dimen/_7sdp"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:cardMaxElevation="@dimen/_10sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_8sdp">
+
+            <TextView
+                android:id="@+id/acItem_tv_bankName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Theme.VolunteerApp.mTitleStyle"
+                android:text="Bank Name"/>
+
+            <TextView
+                android:id="@+id/acItem_tv_IBAN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/acItem_tv_IBAN"
+                style="@style/Theme.VolunteerApp.mTextStyle"
+                android:layout_below="@id/acItem_tv_bankName"/>
+
+            <LinearLayout
+                android:id="@+id/acItem_tv_accountData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/acItem_tv_IBAN">
+
+                <TextView
+                    android:id="@+id/acItem_tv_accountNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    style="@style/Theme.VolunteerApp.mTextStyle"
+                    android:text="Account Number"
+                    android:drawableStart="@drawable/ic_liberary"
+                    android:drawablePadding="@dimen/_3sdp"/>
+
+                <TextView
+                    android:id="@+id/acItem_tv_balance"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/Theme.VolunteerApp.mTextStyle"
+                    android:text="Balance"
+                    android:drawableStart="@drawable/ic_currency"
+                    android:drawableTint="@color/accent"
+                    android:drawablePadding="@dimen/_3sdp"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

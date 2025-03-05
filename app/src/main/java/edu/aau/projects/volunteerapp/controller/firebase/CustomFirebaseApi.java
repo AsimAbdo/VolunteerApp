@@ -10,6 +10,7 @@ import com.google.firebase.database.Query;
 import java.util.Map;
 
 import edu.aau.projects.volunteerapp.model.Admin;
+import edu.aau.projects.volunteerapp.model.BankAccount;
 import edu.aau.projects.volunteerapp.model.Donor;
 import edu.aau.projects.volunteerapp.model.MTask;
 import edu.aau.projects.volunteerapp.model.ServiceSeeker;
@@ -106,5 +107,21 @@ public class CustomFirebaseApi implements FirebaseAccess {
 
     public Task<Void> updateTask(MTask task) {
         return TaskOperations.updateTask(task);
+    }
+
+    public Task<DataSnapshot> createBankAccount(BankAccount bankAccount){
+        return CashFundOperation.insertBankAccount(bankAccount);
+    }
+
+    public Query getBankAccounts(int ownerId){
+        return CashFundOperation.getBankAccounts(ownerId);
+    }
+
+    public Query getVolunteer(int volunteerId) {
+        return GetUsers.getVolunteer(volunteerId);
+    }
+
+    public void upgradeToTeamLeader(Volunteer volunteer) {
+        UpdateUsers.updateToTeamLeader(volunteer);
     }
 }

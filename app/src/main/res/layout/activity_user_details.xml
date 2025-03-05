@@ -25,4 +25,48 @@
         style="@style/Theme.VolunteerApp.mTitleStyle"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_below="@id/app_bar"/>
+
+    <TextView
+        android:id="@+id/details__tv_user_Type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Volunteer Name"
+        style="@style/Theme.VolunteerApp.mTextStyle"
+        android:layout_below="@id/details__tv_user_name"/>
+
+    <TextView
+        android:id="@+id/details__tv_user_CompletedTasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/completedTasks"
+        style="@style/Theme.VolunteerApp.mTextStyle"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@id/details__tv_user_availability"/>
+
+    <TextView
+        android:id="@+id/details__tv_user_availability"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/availability"
+        style="@style/Theme.VolunteerApp.mTextStyle"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@id/details__tv_user_Type"/>
+
+    <TextView
+        android:id="@+id/details__tv_user_balance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/balance"
+        style="@style/Theme.VolunteerApp.mTextStyle"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@id/details__tv_user_CompletedTasks"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Theme.VolunteerApp.mButton"
+        android:id="@+id/details_btn_update"
+        android:text="@string/upgradeToTeamLeader"
+        android:layout_alignParentBottom="true" />
+
 </RelativeLayout>
