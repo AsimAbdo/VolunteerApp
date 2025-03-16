@@ -32,6 +32,10 @@ public class CustomFirebaseApi implements FirebaseAccess {
     public Task<AuthResult> createUser(String email, String password){
         return CustomAuthentication.createUser(email, password);
     }
+
+    public Task<Void> updateProfileName(String username){
+        return CustomAuthentication.updateProfileName(username);
+    }
     public Task<Void> sendActivationLink(){
         return CustomAuthentication.sendActivationLink();
     }

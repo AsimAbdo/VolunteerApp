@@ -178,9 +178,7 @@ public class SignUpActivity extends BaseActivity {
                 if (task.isSuccessful()){
                     UiUtils.makeToast(R.string.activate_account_label, getBaseContext());
                     insertUser(user);
-                    UserProfileChangeRequest updateProfile = new UserProfileChangeRequest.Builder()
-                            .setDisplayName(user.getRole()).build();
-                    api.getCurrentUser().updateProfile(updateProfile);
+                    api.updateProfileName(user.getRole());
                 }
                 else {
                     UiUtils.makeToast(task.getException().getClass().getSimpleName(), getBaseContext());

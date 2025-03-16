@@ -86,7 +86,6 @@ public class ManageSkillsActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         UiUtils.dismissDialog();
                         if (task.isSuccessful()){
-//                          TODO fix string file problem
                             UiUtils.makeToast("R.string.op_done", getBaseContext());
                             finish();
                         }

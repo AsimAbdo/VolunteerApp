@@ -180,7 +180,7 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
                     if (onProvideButtonClickListener != null)
                         onProvideButtonClickListener.onButtonClick(task);
                     else
-                        throw new RuntimeException("YOU MUST CALL setOnProvideButtonClickListener() method");//TODO deal with exception
+                        throw new RuntimeException("YOU MUST CALL setOnProvideButtonClickListener() method");
                 }
             });
         }

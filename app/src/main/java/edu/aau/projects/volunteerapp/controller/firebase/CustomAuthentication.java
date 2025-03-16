@@ -6,14 +6,21 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
-import com.google.firebase.database.Query;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import edu.aau.projects.volunteerapp.R;
+import edu.aau.projects.volunteerapp.model.User;
 
 public class CustomAuthentication implements FirebaseAccess {
 
     public static Task<AuthResult> createUser(String email, String password){
         return FIREBASE_AUTH.createUserWithEmailAndPassword(email, password);
+    }
+
+    public static Task<Void> updateProfileName(String username){
+        UserProfileChangeRequest updateProfile = new UserProfileChangeRequest.Builder()
+                .setDisplayName(username).build();
+        return getCurrentUser().updateProfile(updateProfile);
     }
 
     public static Task<Void> sendActivationLink(){
