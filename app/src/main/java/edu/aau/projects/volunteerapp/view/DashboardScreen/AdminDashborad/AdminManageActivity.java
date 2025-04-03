@@ -30,20 +30,23 @@ import edu.aau.projects.volunteerapp.databinding.ActivityViewDetailsBinding;
 import edu.aau.projects.volunteerapp.model.MTask;
 import edu.aau.projects.volunteerapp.model.Volunteer;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
+import edu.aau.projects.volunteerapp.utils.CustomDialogFragment;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.ServiceSeekerDashboard.UploadRequestActivity;
 
-public class AdminManageActivity extends BaseActivity {
+public class AdminManageActivity extends BaseActivity implements CustomDialogFragment.OnDialogButtonPressedListener {
     private static final String ADMIN_ID_KEY = "adminId";
     ActivityViewDetailsBinding bin;
     private static final String DATA_TYPE_KEY = "data_type";
     private int dataType = -1;
+    private int adminId = -1;
     CustomFirebaseApi api;
 
     UsersAdapter adapter;
     TaskV2Adapter taskAdapter;
     List<Volunteer> volunteers;
     List<MTask> tasks;
+    MTask mTask;
 
     public static Intent makeIntent(Context context, int adminId, int dataType){
         return new Intent(context, AdminManageActivity.class)
@@ -71,8 +74,10 @@ public class AdminManageActivity extends BaseActivity {
 
 
         Bundle bun = getIntent().getExtras();
-        if (bun != null)
+        if (bun != null) {
             dataType = bun.getInt(DATA_TYPE_KEY, -1);
+            adminId = bun.getInt(ADMIN_ID_KEY, -1);
+        }
         if (dataType == 1)
             getUsers();
         else if (dataType == 2) {
@@ -138,14 +143,20 @@ public class AdminManageActivity extends BaseActivity {
 
     private void getTasks(String status){
 
-        bin.viewRvData.setAdapter(taskAdapter);
         taskAdapter.setListener(new OnAcceptRejectClickListener() {
             @Override
             public void onCLick(MTask task, int accept) {
+                mTask = task;
                 if (accept == 1) {
                     // accepted
-                    task.setStatus(getString(R.string.not_taken));
-                    updateTask(task);
+                    UiUtils.showDialogFragment(
+                            getSupportFragmentManager(),
+                            getString(R.string.btn_provide),
+                            getString(R.string.dialog_msg),
+                            getString(R.string.btn_provide),
+                            true
+                            );
+
                 }
                  else {
                     //rejected
@@ -155,6 +166,16 @@ public class AdminManageActivity extends BaseActivity {
             }
         });
         tasks = new ArrayList<>();
+        if (status.equals(getString(R.string.need_resources))) {
+            taskAdapter = new TaskV2Adapter(tasks, TaskV2Adapter.TASK_NEED_RESOURCE_VIEW);
+            taskAdapter.setOnProvideButtonClickListener(new TaskV2Adapter.OnProvideButtonClickListener() {
+                @Override
+                public void onButtonClick(MTask task) {
+                    startActivity(TaskProvideActivity.makeIntent(getBaseContext(), adminId, task));
+                }
+            });
+        }
+        bin.viewRvData.setAdapter(taskAdapter);
 //        UiUtils.showProgressbar(this);
         api.getTasks(status).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -194,7 +215,11 @@ public class AdminManageActivity extends BaseActivity {
         });
     }
 
-    private void setFilters(){
-
+    @Override
+    public void onDialogButtonPressedClick(String text) {
+        double amount = Double.parseDouble(text);
+        mTask.getDescription().setAmount(amount);
+        mTask.setStatus(getString(R.string.not_taken));
+        updateTask(mTask);
     }
 }

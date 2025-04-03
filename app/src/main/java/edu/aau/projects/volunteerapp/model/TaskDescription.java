@@ -7,6 +7,7 @@ public class TaskDescription {
     private String description;
 
     private double amount;
+    private double providedAmount;
 
     public TaskDescription() {
         this.type = "";
@@ -18,6 +19,11 @@ public class TaskDescription {
         this.type = type;
         this.location = location;
         this.description = description;
+    }
+
+    public TaskDescription(String type, String location, String description, double amount) {
+        this(type, location, description);
+        this.amount = amount;
     }
 
     public String getType() {
@@ -47,6 +53,19 @@ public class TaskDescription {
 //    public double getAmount() {
 //        return amount;
 //    }
+
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public double getProvidedAmount() {
+        return providedAmount;
+    }
+
+    public void setProvidedAmount(double providedAmount) {
+        this.providedAmount = providedAmount;
+    }
 
     public void setAmount(double amount) {
         this.amount = amount;

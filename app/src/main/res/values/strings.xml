@@ -75,12 +75,19 @@
     <string name="need_resources">Need resources</string>
     <string name="task_done">task is done</string>
     <string name="task_rejected">task is rejected</string>
+    <string name="assign_member">member</string>
+    <string name="assign_team">team</string>
 
 
     <string-array name="task_filter">
         <item>Not verified yet</item>
         <item>Not taken yet</item>
         <item>Need resources</item>
+    </string-array>
+
+    <string-array name="assignedTo_filter">
+        <item>Member</item>
+        <item>Team</item>
     </string-array>
 
     <string-array name="user_filter">
@@ -130,5 +137,9 @@
     <string name="upgradeToTeamLeader">Upgrade to Team Leader</string>
     <string name="individual">Individual</string>
     <string name="team">Team</string>
+    <string name="enterBalance">Enter Balance</string>
+    <string name="insufficentResources">Insufficient Money</string>
+    <string name="dialog_msg">Enter initial amount</string>
+    <string name="assignToLabel">Assigned To</string>
     <!--    <string name="redundantskill">The Skill Already exists</string>-->
 </resources>

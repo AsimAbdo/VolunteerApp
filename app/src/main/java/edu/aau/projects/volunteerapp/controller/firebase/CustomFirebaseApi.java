@@ -128,4 +128,8 @@ public class CustomFirebaseApi implements FirebaseAccess {
     public void upgradeToTeamLeader(Volunteer volunteer) {
         UpdateUsers.updateToTeamLeader(volunteer);
     }
+
+    public Task<Void> updateBankAccount(BankAccount account) {
+        return CashFundOperation.updateBankAccount(account);
+    }
 }

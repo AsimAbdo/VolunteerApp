@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/graylight"
+    tools:context=".view.DashboardScreen.AdminDashborad.TaskProvideActivity">
+
+
+    <Spinner
+        android:id="@+id/pr_sp_bankAccounts"
+        style="@style/Theme.VolunteerApp.mSpinnerStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/Theme.VolunteerApp.mTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enterBalance"
+        app:layout_constraintBottom_toBottomOf="@+id/pr_et_balance"
+        app:layout_constraintStart_toStartOf="@+id/pr_sp_bankAccounts"
+        app:layout_constraintTop_toTopOf="@+id/pr_et_balance" />
+
+    <EditText
+        android:id="@+id/pr_et_balance"
+        style="@style/Theme.VolunteerApp.mEditTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_currency"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/pr_sp_bankAccounts" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_provide"
+        style="@style/Theme.VolunteerApp.mButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_provide"
+        app:layout_constraintTop_toBottomOf="@+id/pr_et_balance" />
+</androidx.constraintlayout.widget.ConstraintLayout>

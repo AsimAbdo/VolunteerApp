@@ -49,4 +49,8 @@ public class CashFundOperation implements FirebaseAccess {
     public static Query getBankAccounts(int ownerId){
         return bankAccountsRef.orderByChild("ownerId").equalTo(ownerId);
     }
+
+    public static Task<Void> updateBankAccount(BankAccount account) {
+        return bankAccountsRef.child(String.valueOf(account.getAccountId())).updateChildren(account.toMap());
+    }
 }

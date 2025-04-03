@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentManager;
 
 import java.util.Calendar;
 import java.util.regex.Pattern;
@@ -69,5 +70,28 @@ public class UiUtils {
     public static void dismissDialog() {
         if (dialog != null)
             dialog.dismiss();
+    }
+
+    public static void showDialogFragment(FragmentManager fm, String title, String message, String btnText, boolean showEDitText){
+        CustomDialogFragment fragment = CustomDialogFragment.newInstance(
+                title,
+                message,
+                "",
+                0,
+                showEDitText,
+                btnText
+        );
+        fragment.show(fm, null);
+    }
+    public static void showDialogFragment(FragmentManager fm, String title, String message, String btnText, boolean showEDitText, int iconRes){
+        CustomDialogFragment fragment = CustomDialogFragment.newInstance(
+                title,
+                message,
+                "",
+                iconRes,
+                showEDitText,
+                btnText
+        );
+        fragment.show(fm, null);
     }
 }

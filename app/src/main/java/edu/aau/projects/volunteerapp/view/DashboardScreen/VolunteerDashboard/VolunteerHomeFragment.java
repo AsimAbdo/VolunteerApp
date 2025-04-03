@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,10 @@ public class VolunteerHomeFragment extends Fragment {
         api = CustomFirebaseApi.getInstance();
 
         getVolunteer();
+        return bin.getRoot();
+    }
 
+    private void enableButtons(){
         bin.volCvCurrentTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,11 +81,9 @@ public class VolunteerHomeFragment extends Fragment {
                 );
             }
         });
-        return bin.getRoot();
     }
 
     private void getVolunteer(){
-        UiUtils.showProgressbar(getActivity());
         api.getUserInfo().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -89,9 +91,10 @@ public class VolunteerHomeFragment extends Fragment {
                     for (DataSnapshot dataSnapshot :
                             snapshot.getChildren()) {
                         volunteer = dataSnapshot.getValue(Volunteer.class);
+                        Log.d( "onDataChange: ", "" + volunteer.getV_id());
                     }
+                    enableButtons();
                 }
-                UiUtils.dismissDialog();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

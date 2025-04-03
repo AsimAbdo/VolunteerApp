@@ -1,5 +1,6 @@
 package edu.aau.projects.volunteerapp.controller.uiadapters;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +27,16 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
     private int showAcceptRejectButtons = 0;
     List<MTask> tasks;
     OnAcceptRejectClickListener listener;
-
+    OnProvideButtonClickListener onProvideButtonClickListener;
+    Activity activity;
     public TaskV2Adapter(List<MTask> tasks, String mTaskView) {
         this.tasks = tasks;
         this.mTaskView = mTaskView;
     }
 
+    public void setOnProvideButtonClickListener(OnProvideButtonClickListener onProvideButtonClickListener) {
+        this.onProvideButtonClickListener = onProvideButtonClickListener;
+    }
 
     public TaskV2Adapter() {
     }
@@ -48,12 +53,13 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
     @Override
     public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        activity = (Activity) parent.getContext();
         return mTaskView.equals(TASK_VIEW) ?
                 new TaskViewHolder(inflater.inflate(R.layout.custom_tasks_item, null))
                 : mTaskView.equals(TASK_VIEW) ?
                     new CurrentTaskViewHolder(inflater.inflate(R.layout.current_tasks_list_item, null))
                 :
-                    new CurrentTaskViewHolder(inflater.inflate(R.layout.task_provide_list_item, null));
+                    new TaskNeedResourceHolder(inflater.inflate(R.layout.task_provide_list_item, null));
     }
 
     @Override
@@ -94,6 +100,9 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
             bin.taskLocation.setText(task.getDescription().getLocation());
             bin.taskStartDate.setText(task.getStartDate());
             bin.taskEndDate.setText(task.getEndDate());
+            bin.taskAssignTo.setSelection(
+                    task.getAssignedTo().equals(activity.getString(R.string.assign_member)) ? 0 : 1
+            );
 
             if (showAcceptRejectButtons == 0){
                 bin.taskAccept.setOnClickListener(new View.OnClickListener() {
@@ -147,21 +156,15 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
             bin.ctTvLocation.setText(task.getDescription().getLocation());
             bin.ctTvStartDate.setText(task.getStartDate());
             bin.ctTvEndDate.setText(task.getEndDate());
-
 //            TODO task item images
         }
     }
 
     class TaskNeedResourceHolder extends TaskHolder {
         TaskProvideListItemBinding bin;
-        OnProvideButtonClickListener onProvideButtonClickListener;
         public TaskNeedResourceHolder(@NonNull View itemView) {
             super(itemView);
             bin = TaskProvideListItemBinding.bind(itemView);
-        }
-
-        public void setOnProvideButtonClickListener(OnProvideButtonClickListener listener) {
-            this.onProvideButtonClickListener = listener;
         }
 
         @Override
@@ -186,7 +189,7 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
         }
 
     }
-    interface OnProvideButtonClickListener {
+    public interface OnProvideButtonClickListener {
         void onButtonClick(MTask task);
     }
 }

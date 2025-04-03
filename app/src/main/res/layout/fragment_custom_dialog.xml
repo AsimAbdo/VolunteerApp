@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".utils.CustomDialogFragment">
+
+    <TextView
+        android:id="@+id/cf_tv_title"
+        style="@style/Theme.VolunteerApp.mTitleStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_toEndOf="@id/cf_iv_icon"
+        android:text="@string/hello_blank_fragment" />
+
+    <TextView
+        android:id="@+id/cf_tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment"
+        style="@style/Theme.VolunteerApp.mTextStyle"
+        android:layout_below="@id/cf_tv_title"/>
+
+    <EditText
+        android:id="@+id/cf_et_editText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        style="@style/Theme.VolunteerApp.mEditTextStyle"
+        android:inputType="number"
+        android:visibility="gone"
+        android:layout_below="@id/cf_tv_message"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cf_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Theme.VolunteerApp.mButton"
+        android:layout_below="@id/cf_et_editText"/>
+
+    <ImageView
+        android:id="@+id/cf_iv_icon"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_info"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/_15sdp"/>
+
+</RelativeLayout>

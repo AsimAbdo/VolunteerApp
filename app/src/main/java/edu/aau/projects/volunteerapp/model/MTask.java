@@ -1,9 +1,10 @@
 package edu.aau.projects.volunteerapp.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MTask {
+public class MTask implements Serializable {
     private int taskId;
     private int seekerId;
     private String assignedTo; //type
