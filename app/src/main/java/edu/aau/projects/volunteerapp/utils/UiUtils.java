@@ -3,13 +3,24 @@ package edu.aau.projects.volunteerapp.utils;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
@@ -72,8 +83,9 @@ public class UiUtils {
             dialog.dismiss();
     }
 
+    static CustomDialogFragment fragment;
     public static void showDialogFragment(FragmentManager fm, String title, String message, String btnText, boolean showEDitText){
-        CustomDialogFragment fragment = CustomDialogFragment.newInstance(
+         fragment = CustomDialogFragment.newInstance(
                 title,
                 message,
                 "",
@@ -82,6 +94,18 @@ public class UiUtils {
                 btnText
         );
         fragment.show(fm, null);
+        fragment.setCancelable(false);
+    }
+
+    public static String getCurrentDate(){
+        Date date = new Date(Calendar.getInstance().getTimeInMillis());
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss");
+        return df.format(date);
+    }
+
+    public static void dismissDialogFragment(){
+        if (fragment != null)
+            fragment.dismiss();
     }
     public static void showDialogFragment(FragmentManager fm, String title, String message, String btnText, boolean showEDitText, int iconRes){
         CustomDialogFragment fragment = CustomDialogFragment.newInstance(
@@ -93,5 +117,9 @@ public class UiUtils {
                 btnText
         );
         fragment.show(fm, null);
+    }
+
+    public static void pickImage(FragmentActivity activity, ImageView imageView){
+
     }
 }

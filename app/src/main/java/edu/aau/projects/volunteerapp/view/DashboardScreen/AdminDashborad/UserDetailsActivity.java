@@ -52,7 +52,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                     for (DataSnapshot child : snapshot.getChildren()) {
                         volunteer = child.getValue(Volunteer.class);
                     }
-
+                    putDataToFields(volunteer);
                 }
             }
 

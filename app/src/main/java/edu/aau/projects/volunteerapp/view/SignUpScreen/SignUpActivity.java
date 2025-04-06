@@ -92,7 +92,7 @@ public class SignUpActivity extends BaseActivity {
                 return;
             }
 
-            User user = new User(name, email, "", password, role, "", joinedDate);
+            User user = new User(name, email, "", password, role, "", joinedDate, "");
 
             api.createUser(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override

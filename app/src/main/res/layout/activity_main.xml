@@ -13,6 +13,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true">
@@ -52,14 +53,15 @@
             android:layout_centerHorizontal="true" />
 
         <TextView
+            android:id="@+id/textView2"
             style="@style/Theme.VolunteerApp.mTextStyle"
-            android:textSize="@dimen/_13ssp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/main_tv_title"
             android:layout_centerHorizontal="true"
             android:fontFamily="serif"
-            android:text="@string/app_description" />
+            android:text="@string/app_description"
+            android:textSize="@dimen/_13ssp" />
 
     </RelativeLayout>
 

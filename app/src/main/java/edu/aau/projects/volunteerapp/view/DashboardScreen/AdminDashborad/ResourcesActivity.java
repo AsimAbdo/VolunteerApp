@@ -12,6 +12,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
 import edu.aau.projects.volunteerapp.controller.uiadapters.BankAccountsAdapter;
@@ -56,6 +57,8 @@ public class ResourcesActivity extends BaseActivity {
 
         api = CustomFirebaseApi.getInstance();
         adapter = new BankAccountsAdapter(bankAccounts);
+        bankAccounts = new ArrayList<>();
+
 
         bin.accountRv.setAdapter(adapter);
         bin.accountRv.setLayoutManager(new GridLayoutManager(this, 1));
@@ -70,9 +73,8 @@ public class ResourcesActivity extends BaseActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-
+    protected void onResume() {
+        super.onResume();
         api.getBankAccounts(ownerId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

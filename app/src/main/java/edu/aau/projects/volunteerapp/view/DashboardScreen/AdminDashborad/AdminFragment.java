@@ -39,13 +39,15 @@ public class AdminFragment extends Fragment {
         bin = FragmentAdminBinding.inflate(inflater);
         api = CustomFirebaseApi.getInstance();
 
-        api.getUserInfo().addListenerForSingleValueEvent(new ValueEventListener() {
+        if (admin == null)
+            api.getUserInfo().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     for (DataSnapshot child : snapshot.getChildren()) {
                         admin = child.getValue(Admin.class);
                     }
+                    enableFields();
                 }
             }
 
@@ -54,6 +56,11 @@ public class AdminFragment extends Fragment {
 
             }
         });
+
+        return bin.getRoot();
+    }
+
+    private void enableFields(){
         bin.adminUsers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +71,7 @@ public class AdminFragment extends Fragment {
         bin.adminResources.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(ResourcesActivity.makeIntent(getContext(), getString(R.string.individual), 1));
+                getActivity().startActivity(ResourcesActivity.makeIntent(getContext(), getString(R.string.admin), 1));
             }
         });
 
@@ -74,7 +81,6 @@ public class AdminFragment extends Fragment {
                 getActivity().startActivity(AdminManageActivity.makeIntent(getContext(), admin.getAdminId(), 2));
             }
         });
-        return bin.getRoot();
     }
 
 }

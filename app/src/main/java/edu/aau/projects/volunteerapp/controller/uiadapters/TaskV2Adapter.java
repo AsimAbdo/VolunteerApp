@@ -100,6 +100,7 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
             bin.taskLocation.setText(task.getDescription().getLocation());
             bin.taskStartDate.setText(task.getStartDate());
             bin.taskEndDate.setText(task.getEndDate());
+            bin.taskAssignTo.setEnabled(false);
             bin.taskAssignTo.setSelection(
                     task.getAssignedTo().equals(activity.getString(R.string.assign_member)) ? 0 : 1
             );

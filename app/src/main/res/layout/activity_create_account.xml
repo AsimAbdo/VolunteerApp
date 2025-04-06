@@ -32,7 +32,7 @@
             android:id="@+id/account_et_bank_name"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-            android:inputType="number"
+            android:inputType="textPersonName"
             android:hint="@string/account_et_accountNameHint"
             style="@style/Theme.VolunteerApp.mEditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>

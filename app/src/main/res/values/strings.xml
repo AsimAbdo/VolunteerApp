@@ -141,5 +141,11 @@
     <string name="insufficentResources">Insufficient Money</string>
     <string name="dialog_msg">Enter initial amount</string>
     <string name="assignToLabel">Assigned To</string>
+    <string name="amount_hint">Enter Amount</string>
+    <string name="donor_tv_label">Available Accounts for donations</string>
+    <string name="donor_tv_label2">My Accounts</string>
+    <string name="donationSuccessfull">Thank you for your donation</string>
+    <string name="don_tv_title">Donations</string>
+    <string name="receivingEntity">"Receiving Entity : "</string>
     <!--    <string name="redundantskill">The Skill Already exists</string>-->
 </resources>

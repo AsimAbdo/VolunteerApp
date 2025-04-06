@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 
@@ -31,7 +32,7 @@ public class CreateAccountActivity extends BaseActivity {
     private String bankName = "";
 
     public static Intent makeIntent(Context context, String ownerType, int ownerId) {
-        return new Intent(context, ResourcesActivity.class)
+        return new Intent(context, CreateAccountActivity.class)
                 .putExtra(OWNER_ID_EXTRA, ownerId)
                 .putExtra(OWNER_TYPE_EXTRA, ownerType);
     }
@@ -52,17 +53,30 @@ public class CreateAccountActivity extends BaseActivity {
 
         api = CustomFirebaseApi.getInstance();
 
+        bin.accountSpBankName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                bin.accountEtlBankName.setVisibility(position == 3 ? View.VISIBLE : View.GONE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         bin.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (UiUtils.verifyFields(bin.accountEtAccountNumber, bin.accountEtIBAN)
-                        &&
-                        (bin.accountSpBankName.getSelectedItemPosition() != 3
-                                && UiUtils.verifyFields(bin.accountEtBankName))
-                ){
+                if (!UiUtils.verifyFields(bin.accountEtAccountNumber, bin.accountEtIBAN)){
                     UiUtils.makeToast(R.string.empty_fields, getBaseContext());
                     return;
                 }
+                if (bin.accountSpBankName.getSelectedItemPosition() == 3)
+                    if (!UiUtils.verifyFields(bin.accountEtBankName)){
+                        UiUtils.makeToast(R.string.empty_fields, getBaseContext());
+                        return;
+                    }
+
                 BankAccount account = new BankAccount();
                 account.setAccountNumber(bin.accountEtAccountNumber.getText().toString());
                 account.setIBAN(bin.accountEtIBAN.getText().toString());

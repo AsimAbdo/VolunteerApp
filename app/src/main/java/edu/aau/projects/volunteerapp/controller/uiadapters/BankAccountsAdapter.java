@@ -22,6 +22,7 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
 
     public void setBankAccounts(List<BankAccount> bankAccounts) {
         this.bankAccounts = bankAccounts;
+        notifyDataSetChanged();
     }
 
     @NonNull

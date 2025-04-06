@@ -54,10 +54,10 @@ public class CustomDialogFragment extends DialogFragment {
         Bundle args = new Bundle();
         args.putString(ARG_TITLE, title);
         args.putString(ARG_MESSAGE, message);
-        args.putString(ARG_MESSAGE, content);
-        args.putString(ARG_MESSAGE, btnText);
-        args.putInt(ARG_MESSAGE, imageRes);
-        args.putBoolean(ARG_MESSAGE, showEDitText);
+        args.putString(ARG_CONTENT, content);
+        args.putString(ARG_BUTTON_TEXT, btnText);
+        args.putInt(ARG_ICON_RESOURCE, imageRes);
+        args.putBoolean(ARG_SHOW_EDIT_TEXT, showEDitText);
         fragment.setArguments(args);
         return fragment;
     }
@@ -77,10 +77,10 @@ public class CustomDialogFragment extends DialogFragment {
         if (getArguments() != null) {
             title = getArguments().getString(ARG_TITLE);
             message = getArguments().getString(ARG_MESSAGE);
-            content = getArguments().getString(ARG_MESSAGE);
-            iconResource = getArguments().getInt(ARG_MESSAGE);
-            showEDitText = getArguments().getBoolean(ARG_MESSAGE);
-            btnText = getArguments().getString(ARG_MESSAGE);
+            content = getArguments().getString(ARG_CONTENT);
+            iconResource = getArguments().getInt(ARG_ICON_RESOURCE);
+            showEDitText = getArguments().getBoolean(ARG_SHOW_EDIT_TEXT);
+            btnText = getArguments().getString(ARG_BUTTON_TEXT);
         }
     }
 
@@ -101,7 +101,7 @@ public class CustomDialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 if (showEDitText){
-                    if (UiUtils.verifyFields(bin.cfEtEditText))
+                    if (!UiUtils.verifyFields(bin.cfEtEditText))
                         UiUtils.makeToast(R.string.empty_fields, getContext());
                     else
                         listener.onDialogButtonPressedClick(bin.cfEtEditText.getText().toString());

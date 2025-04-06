@@ -1,12 +1,18 @@
 package edu.aau.projects.volunteerapp.view.DashboardScreen;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,17 +31,20 @@ import edu.aau.projects.volunteerapp.databinding.ActivityDashboardBinding;
 import edu.aau.projects.volunteerapp.model.Admin;
 import edu.aau.projects.volunteerapp.model.User;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
+import edu.aau.projects.volunteerapp.utils.ImageUtils;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.AdminDashborad.AdminFragment;
+import edu.aau.projects.volunteerapp.view.DashboardScreen.DonorDashboard.DonorFragment;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.ServiceSeekerDashboard.ServiceSeekerHomeFragment;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.VolunteerDashboard.VolunteerHomeFragment;
 import edu.aau.projects.volunteerapp.view.HomeScreen.MainActivity;
 
-public class DashboardActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class DashboardActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, ProfileFragment.OnPickImageClickListener {
     ActivityDashboardBinding bin;
     ActionBarDrawerToggle toggle;
     CustomFirebaseApi api;
     String role = "";
+    ActivityResultLauncher launcher;
 
 
     public static Intent makeIntent(Context context){
@@ -76,6 +85,19 @@ public class DashboardActivity extends BaseActivity implements NavigationView.On
         api = CustomFirebaseApi.getInstance();
         role = api.getCurrentUserName();
 
+        launcher = registerForActivityResult(new ActivityResultContracts.GetContent(),
+                new ActivityResultCallback<Uri>() {
+                    @Override
+                    public void onActivityResult(Uri o) {
+                        bin.temp.setImageURI(o);
+                        String imageStr = ImageUtils.getStringImage((BitmapDrawable) bin.temp.getDrawable());
+                        viewHeader(false);
+                        pushFragment(DashboardActivity.this, ProfileFragment.newInstance(role, imageStr), bin.dashboardContainer.getId(), false);
+                        // TODO store the image
+                    }
+                });
+
+        setFragment();
     }
 
     @Override
@@ -86,17 +108,14 @@ public class DashboardActivity extends BaseActivity implements NavigationView.On
             finish();
         } else if (item.getItemId() == R.id.nav_profile) {
             viewHeader(false);
-            pushFragment(this, ProfileFragment.newInstance(role), bin.dashboardContainer.getId(), false);
+            pushFragment(this, ProfileFragment.newInstance(role, ""), bin.dashboardContainer.getId(), false);
         }
         if (bin.getRoot().isDrawerOpen(GravityCompat.START))
             bin.getRoot().closeDrawer(GravityCompat.START);
         return false;
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
+    private void setFragment(){
         viewHeader(true);
 
         if (role.equals(getString(R.string.service_seeker))) {
@@ -110,7 +129,7 @@ public class DashboardActivity extends BaseActivity implements NavigationView.On
             pushFragment(this, new VolunteerHomeFragment(), bin.dashboardContainer.getId(), false);
         }
         else if (role.equals(getString(R.string.donor))) {
-
+            pushFragment(this, new DonorFragment(), bin.dashboardContainer.getId(), false);
         }
     }
 
@@ -123,5 +142,11 @@ public class DashboardActivity extends BaseActivity implements NavigationView.On
             bin.dashTitle.setVisibility(View.GONE);
             bin.dashIv.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void onPickImageClick() {
+        if (checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, getBaseContext()))
+            launcher.launch("image/*");
     }
 }

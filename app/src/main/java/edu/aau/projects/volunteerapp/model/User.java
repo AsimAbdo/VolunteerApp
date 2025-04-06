@@ -11,8 +11,8 @@ public class User {
     private String password;
     private String role;
     private String address;
+    private String image;
     private String dateJoined;
-    private String email_password;
 
     public User() {
         this.name = "";
@@ -20,12 +20,12 @@ public class User {
         this.email = "";
         this.dateJoined = "";
         this.role = "";
+        this.image = "";
         this.address = "";
         this.phone = "";
-        this.email_password = "";
     }
 
-    public User(String name, String email, String phone, String password, String role, String address, String dateJoined) {
+    public User(String name, String email, String phone, String password, String role, String address, String dateJoined, String image) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -33,7 +33,6 @@ public class User {
         this.role = role;
         this.address = address;
         this.dateJoined = dateJoined;
-        this.email_password = email + "_" + password;
     }
 
     public String getUserId() {
@@ -100,8 +99,12 @@ public class User {
         this.password = password;
     }
 
-    public String getEmail_password() {
-        return email_password;
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Map<String, Object> toMap(){
@@ -112,7 +115,7 @@ public class User {
         map.put("role", role);
         map.put("email", email);
         map.put("userId", userId);
-        map.put("email_password", email_password);
+        map.put("image", image);
         map.put("phone", phone);
         map.put("dateJoined", dateJoined);
         return map;
@@ -121,7 +124,8 @@ public class User {
     public boolean isEqual(User user) {
         return name.equals(user.getName())
                 && address.equals(user.getAddress())
-                && phone.equals(user.getPhone());
+                && phone.equals(user.getPhone())
+                && image.equals(user.getImage());
     }
 
     public User copy() {
@@ -133,6 +137,7 @@ public class User {
         user.setName(name);
         user.setAddress(address);
         user.setDateJoined(dateJoined);
+        user.setImage(image);
         user.setPassword(password);
         return user;
     }

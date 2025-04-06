@@ -11,6 +11,7 @@ import java.util.Map;
 
 import edu.aau.projects.volunteerapp.model.Admin;
 import edu.aau.projects.volunteerapp.model.BankAccount;
+import edu.aau.projects.volunteerapp.model.Donation;
 import edu.aau.projects.volunteerapp.model.Donor;
 import edu.aau.projects.volunteerapp.model.MTask;
 import edu.aau.projects.volunteerapp.model.ServiceSeeker;
@@ -121,6 +122,10 @@ public class CustomFirebaseApi implements FirebaseAccess {
         return CashFundOperation.getBankAccounts(ownerId);
     }
 
+    public Query getBankAccounts(String ownerType){
+        return CashFundOperation.getBankAccounts(ownerType);
+    }
+
     public Query getVolunteer(int volunteerId) {
         return GetUsers.getVolunteer(volunteerId);
     }
@@ -131,5 +136,13 @@ public class CustomFirebaseApi implements FirebaseAccess {
 
     public Task<Void> updateBankAccount(BankAccount account) {
         return CashFundOperation.updateBankAccount(account);
+    }
+
+    public Task<DataSnapshot> createDonation(Donation donation) {
+        return CashFundOperation.insertDonation(donation);
+    }
+
+    public Query getDonations(int donorId) {
+        return CashFundOperation.getDonations(donorId);
     }
 }

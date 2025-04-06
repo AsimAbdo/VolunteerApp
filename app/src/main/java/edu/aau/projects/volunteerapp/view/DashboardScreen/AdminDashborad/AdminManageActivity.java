@@ -109,7 +109,6 @@ public class AdminManageActivity extends BaseActivity implements CustomDialogFra
     }
 
     private void getUsers(){
-        bin.viewRvData.setAdapter(adapter);
         adapter.setOnItemClickListener(new OnAcceptRejectClickListener() {
             @Override
             public void onCLick(MTask task, int accept) {
@@ -117,6 +116,7 @@ public class AdminManageActivity extends BaseActivity implements CustomDialogFra
             }
         });
 
+        bin.viewRvData.setAdapter(adapter);
         volunteers = new ArrayList<>();
         UiUtils.showProgressbar(this);
         api.getUsers().addListenerForSingleValueEvent(new ValueEventListener() {
@@ -153,7 +153,7 @@ public class AdminManageActivity extends BaseActivity implements CustomDialogFra
                             getSupportFragmentManager(),
                             getString(R.string.btn_provide),
                             getString(R.string.dialog_msg),
-                            getString(R.string.btn_provide),
+                            getString(R.string.btn_submit),
                             true
                             );
 
@@ -221,5 +221,6 @@ public class AdminManageActivity extends BaseActivity implements CustomDialogFra
         mTask.getDescription().setAmount(amount);
         mTask.setStatus(getString(R.string.not_taken));
         updateTask(mTask);
+        UiUtils.dismissDialogFragment();
     }
 }

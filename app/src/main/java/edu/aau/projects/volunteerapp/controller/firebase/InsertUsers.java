@@ -18,6 +18,7 @@ public class InsertUsers implements FirebaseAccess {
     private static String volunteerCounter = "volunteerCounter";
     private static String serviceSeekerCounter = "serviceSeekerCounter";
     private static String donorCounter = "donorCounter";
+    private static String usersCounter = "usersCounter";
     private static String adminCounter = "adminCounter";
     private static String teamLeaderCounter = "donorCounter";
 
@@ -28,7 +29,7 @@ public class InsertUsers implements FirebaseAccess {
     }
 
     public static Task<DataSnapshot> insertVolunteer(Volunteer volunteer){
-        return Counter.getCounter(volunteerCounter).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        return Counter.getCounter(usersCounter).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 int volId = 1;
@@ -38,13 +39,13 @@ public class InsertUsers implements FirebaseAccess {
                 volunteersRef.child(String.valueOf(volunteer.getV_id())).setValue(volunteer);
                 volunteer.createCashFund();
                 CashFundOperation.insertCashFund(volunteer.getCashFund());
-                Counter.updateCounter(volunteerCounter, volId);
+                Counter.updateCounter(usersCounter, volId);
             }
         });
     }
 
     public static Task<DataSnapshot> insertServiceSeeker(ServiceSeeker serviceSeeker){
-        return Counter.getCounter(serviceSeekerCounter).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        return Counter.getCounter(usersCounter).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 int serviceSeekerId = 1;
@@ -52,13 +53,13 @@ public class InsertUsers implements FirebaseAccess {
                     serviceSeekerId = task.getResult().getValue(Integer.class) + 1;
                 serviceSeeker.setSeekerId(serviceSeekerId);
                 serviceSeekersRef.child(String.valueOf(serviceSeeker.getSeekerId())).setValue(serviceSeeker);
-                Counter.updateCounter(serviceSeekerCounter, serviceSeekerId);
+                Counter.updateCounter(usersCounter, serviceSeekerId);
             }
         });
     }
 
     public static Task<DataSnapshot> insertAdmin(Admin admin){
-        return Counter.getCounter(adminCounter).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        return Counter.getCounter(usersCounter).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 int adminId = 1;
@@ -68,13 +69,13 @@ public class InsertUsers implements FirebaseAccess {
                 admin.createCashFund();
                 adminsRef.child(String.valueOf(adminId)).setValue(admin);
                 CashFundOperation.insertCashFund(admin.getCashFund());
-                Counter.updateCounter(adminCounter, adminId);
+                Counter.updateCounter(usersCounter, adminId);
             }
         });
     }
 
     public static Task<DataSnapshot> insertDonor(Donor donor){
-        return Counter.getCounter(donorCounter).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        return Counter.getCounter(usersCounter).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 int donorId = 1;
@@ -82,7 +83,7 @@ public class InsertUsers implements FirebaseAccess {
                     donorId = task.getResult().getValue(Integer.class) + 1;
                 donor.setDonorId(donorId);
                 donorsRef.child(String.valueOf(donor.getDonorId())).setValue(donor);
-                Counter.updateCounter(donorCounter, donorId);
+                Counter.updateCounter(usersCounter, donorId);
             }
         });
 

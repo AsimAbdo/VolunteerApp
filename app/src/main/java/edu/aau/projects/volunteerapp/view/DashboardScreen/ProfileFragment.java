@@ -1,6 +1,9 @@
 package edu.aau.projects.volunteerapp.view.DashboardScreen;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -34,31 +37,44 @@ import edu.aau.projects.volunteerapp.model.Donor;
 import edu.aau.projects.volunteerapp.model.ServiceSeeker;
 import edu.aau.projects.volunteerapp.model.User;
 import edu.aau.projects.volunteerapp.model.Volunteer;
+import edu.aau.projects.volunteerapp.utils.BaseActivity;
+import edu.aau.projects.volunteerapp.utils.ImageUtils;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 
 public class ProfileFragment extends Fragment {
 
 //    private static final String ROLE_ID_EXTRA = "roleId";
     private static final String ROLE_EXTRA = "role";
+    private static final String IMAGE_EXTRA = "image";
     private int roleId;
     private String role;
     FragmentProfileBinding bin;
     CustomFirebaseApi api;
     User currentUser, original;
+    OnPickImageClickListener listener;
+    private String image;
 
     public ProfileFragment() {
         // Required empty public constructor
     }
 
-    public static ProfileFragment newInstance(String role) {
+    public static ProfileFragment newInstance(String role, String image) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle bun = new Bundle();
 
         bun.putString(ROLE_EXTRA, role);
+        bun.putString(IMAGE_EXTRA, image);
 //        bun.putInt(ROLE_ID_EXTRA, roleId);
 
         fragment.setArguments(bun);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof OnPickImageClickListener)
+            listener = (OnPickImageClickListener) context;
     }
 
     @Override
@@ -69,6 +85,7 @@ public class ProfileFragment extends Fragment {
         Bundle args = getArguments();
         if (args != null){
             role = args.getString(ROLE_EXTRA, "");
+            image = args.getString(IMAGE_EXTRA, "");
 //            roleId = args.getInt(ROLE_EXTRA, -1);
         }
     }
@@ -78,6 +95,9 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         bin = FragmentProfileBinding.inflate(inflater);
+        if (!image.equals("")){
+            bin.profileIvImage.setImageBitmap(ImageUtils.getBitmapImage(image));
+        }
         api.getUserInfo().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -121,9 +141,16 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+
+        bin.profileIvPickImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onPickImageClick();
+            }
+        });
+
         return bin.getRoot();
     }
-
     private void putData(User user){
         bin.profileEtUsername.setText(user.getName());
         bin.profileEtAddress.setText(user.getAddress());
@@ -131,6 +158,10 @@ public class ProfileFragment extends Fragment {
         bin.profileTvDateJoined.setText(user.getDateJoined());
         bin.profileTvRole.setText(user.getRole());
         bin.profileTvEmail.setText(user.getEmail());
+
+        Log.d("TAG", "putData: " + user.getImage());
+        if (!user.getImage().equals("") && image.equals(""))
+            bin.profileIvImage.setImageBitmap(ImageUtils.getBitmapImage(user.getImage()));
 
         enableFields(bin.profileIvAdressEdit, bin.profileEtAddress);
         enableFields(bin.profileIvPhoneEdit, bin.profileEtPhone);
@@ -145,6 +176,8 @@ public class ProfileFragment extends Fragment {
                 currentUser.setAddress(address);
                 currentUser.setPhone(phone);
                 currentUser.setName(username);
+                if (!image.equals(""))
+                    currentUser.setImage(image);
                 if (! currentUser.isEqual(original)){
                     UiUtils.showProgressbar(getActivity());
                     api.updateUser(currentUser, roleId).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -176,5 +209,9 @@ public class ProfileFragment extends Fragment {
                 editText.setEnabled(! isEnable);
             }
         });
+    }
+
+    interface OnPickImageClickListener {
+        void onPickImageClick();
     }
 }

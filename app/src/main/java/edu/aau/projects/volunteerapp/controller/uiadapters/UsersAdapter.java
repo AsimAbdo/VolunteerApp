@@ -27,6 +27,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersHolder>
     }
 
     public UsersAdapter() {
+
     }
 
     public void setOnItemClickListener(OnAcceptRejectClickListener onItemClickListener){

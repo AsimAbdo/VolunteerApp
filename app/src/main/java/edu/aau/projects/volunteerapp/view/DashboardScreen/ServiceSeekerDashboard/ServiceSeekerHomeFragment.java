@@ -71,7 +71,7 @@ public class ServiceSeekerHomeFragment extends Fragment {
     }
 
     private void getFirebaseInfo(){
-        UiUtils.showProgressbar(getActivity());
+//        UiUtils.showProgressbar(getActivity());
         api.getUserInfo().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -100,7 +100,7 @@ public class ServiceSeekerHomeFragment extends Fragment {
                     tasks.add(task);
                 }
                 adapter.setTasks(tasks);
-                UiUtils.dismissDialog();
+//                UiUtils.dismissDialog();
             }
 
             @Override
