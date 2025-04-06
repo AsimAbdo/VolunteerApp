@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     CustomFirebaseApi api;
     AppSharedPreferences sharedPreferences;
 
-    public static Intent getIntent(Context context){
+    public static Intent makeIntent(Context context){
         return new Intent(context, LoginActivity.class);
     }
 
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         bin.loginBtnSignUp.setOnClickListener(v -> {
-            startActivity(SignUpActivity.getIntent(getBaseContext()));
+            startActivity(SignUpActivity.makeIntent(getBaseContext()));
             finish();
         });
 

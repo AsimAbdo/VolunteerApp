@@ -56,7 +56,7 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
         activity = (Activity) parent.getContext();
         return mTaskView.equals(TASK_VIEW) ?
                 new TaskViewHolder(inflater.inflate(R.layout.custom_tasks_item, null))
-                : mTaskView.equals(TASK_VIEW) ?
+                : mTaskView.equals(CURRENT_TASK_VIEW) ?
                     new CurrentTaskViewHolder(inflater.inflate(R.layout.current_tasks_list_item, null))
                 :
                     new TaskNeedResourceHolder(inflater.inflate(R.layout.task_provide_list_item, null));
@@ -102,15 +102,18 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
             bin.taskEndDate.setText(task.getEndDate());
             bin.taskAssignTo.setEnabled(false);
             bin.taskAssignTo.setSelection(
-                    task.getAssignedTo().equals(activity.getString(R.string.assign_member)) ? 0 : 1
+                    task.getAssignedTo().equals(activity.getString(R.string.assignToMember)) ? 0 : 1
             );
 
             if (showAcceptRejectButtons == 0){
                 bin.taskAccept.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (listener != null)
+                        if (listener != null) {
                             listener.onCLick(task, 1);
+                            tasks.remove(task);
+                            notifyDataSetChanged();
+                        }
                         else
                             throw new RuntimeException("you have to set OnAcceptRejectClickListener");
                     }
@@ -128,9 +131,6 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
             } else if (showAcceptRejectButtons == 1) {
                 bin.taskAccept.setVisibility(View.GONE);
                 bin.taskReject.setVisibility(View.GONE);
-                bin.taskImage.setVisibility(View.GONE);
-                bin.taskIvBefore.setVisibility(View.GONE);
-                bin.taskIvNext.setVisibility(View.GONE);
             }
 
 //            TODO task item images
@@ -157,7 +157,16 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
             bin.ctTvLocation.setText(task.getDescription().getLocation());
             bin.ctTvStartDate.setText(task.getStartDate());
             bin.ctTvEndDate.setText(task.getEndDate());
-//            TODO task item images
+            bin.ctTvTotalPrice.setText(bin.ctTvTotalPrice.getText() + " : " + task.getDescription().getAmount());
+            bin.ctTvProvidedPrice.setText(bin.ctTvProvidedPrice.getText() + " : " + task.getDescription().getProvidedAmount());
+
+            bin.ctBtnDone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onProvideButtonClickListener != null)
+                        onProvideButtonClickListener.onButtonClick(task);
+                }
+            });
         }
     }
 
@@ -176,6 +185,7 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
             bin.taskStartDate.setText(task.getStartDate());
             bin.taskEndDate.setText(task.getEndDate());
             bin.taskAssignTo.setText(task.getAssignedTo());
+            bin.taskAssignTo.setEnabled(false);
             bin.taskAssignToId.setText(String.valueOf(task.getAssignedToId()));
 
             bin.btnProvide.setOnClickListener(new View.OnClickListener() {

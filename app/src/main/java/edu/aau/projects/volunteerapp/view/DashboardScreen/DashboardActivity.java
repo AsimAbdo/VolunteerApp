@@ -148,5 +148,7 @@ public class DashboardActivity extends BaseActivity implements NavigationView.On
     public void onPickImageClick() {
         if (checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, getBaseContext()))
             launcher.launch("image/*");
+        else
+            requestPermissions(this, 1, Manifest.permission.READ_EXTERNAL_STORAGE);
     }
 }

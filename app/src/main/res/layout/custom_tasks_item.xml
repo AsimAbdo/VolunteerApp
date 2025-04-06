@@ -86,6 +86,7 @@
                 android:layout_alignBottom="@id/task_assignTo"
                 style="@style/Theme.VolunteerApp.mTextStyle"
                 android:layout_marginTop="@dimen/_6sdp"/>
+
             <Spinner
                 android:id="@+id/task_assignTo"
                 android:layout_width="wrap_content"
@@ -103,35 +104,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/task_assignTo">
 
-                <ImageView
-                    android:id="@+id/task_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_300sdp"
-                    android:src="@drawable/ic_no_image"
-                    android:layout_centerHorizontal="true" />
-
-                <ImageView
-                    android:id="@+id/task_iv_before"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_alignStart="@+id/task_image"
-                    android:layout_alignTop="@id/task_image"
-                    android:layout_marginTop="@dimen/_140sdp"
-                    android:src="@drawable/ic_before" />
-
-                <ImageView
-                    android:id="@+id/task_iv_next"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_alignEnd="@+id/task_image"
-                    android:layout_alignTop="@id/task_image"
-                    android:layout_marginTop="@dimen/_140sdp"
-                    android:src="@drawable/ic_next" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/task_image">
+                    android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/task_accept"

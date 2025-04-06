@@ -47,7 +47,7 @@
             android:layout_height="@dimen/_40sdp"
             android:hint="@string/amount_hint"
             style="@style/Theme.VolunteerApp.mEditTextStyle"
-            android:inputType="number"/>
+            android:inputType="numberDecimal"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton

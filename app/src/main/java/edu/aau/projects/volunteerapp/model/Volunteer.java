@@ -2,7 +2,9 @@ package edu.aau.projects.volunteerapp.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Volunteer implements CashFundHolder {
     private int v_id;
@@ -109,5 +111,17 @@ public class Volunteer implements CashFundHolder {
         cashFund.setOwnerType("Individual");
         cashFund.setOwnerId(getV_id());
         return cashFund;
+    }
+
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("v_id", v_id);
+        map.put("availability", availability);
+        map.put("skills", skills);
+        map.put("user", user);
+        map.put("completedTasks", completedTasks);
+        map.put("teamLeader", teamLeader);
+        map.put("cashFund", cashFund);
+        return map;
     }
 }

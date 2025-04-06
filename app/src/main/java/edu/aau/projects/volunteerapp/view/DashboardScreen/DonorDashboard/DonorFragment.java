@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,6 +19,7 @@ import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
 import edu.aau.projects.volunteerapp.databinding.FragmentDonorBinding;
 import edu.aau.projects.volunteerapp.model.Donor;
 import edu.aau.projects.volunteerapp.model.ServiceSeeker;
+import edu.aau.projects.volunteerapp.utils.UiUtils;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.AdminDashborad.ResourcesActivity;
 
 public class DonorFragment extends Fragment {
@@ -43,6 +45,7 @@ public class DonorFragment extends Fragment {
         api.getUserInfo().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 if (snapshot.exists()){
                     for (DataSnapshot dataSnapshot :
                             snapshot.getChildren()) {

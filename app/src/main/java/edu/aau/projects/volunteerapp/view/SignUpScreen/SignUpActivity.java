@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -17,10 +18,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 import edu.aau.projects.volunteerapp.R;
 import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
+import edu.aau.projects.volunteerapp.controller.uiadapters.BankAccountSpAdapter;
+import edu.aau.projects.volunteerapp.controller.uiadapters.SpAdapter;
 import edu.aau.projects.volunteerapp.databinding.ActivitySignUpBinding;
 import edu.aau.projects.volunteerapp.model.Admin;
 import edu.aau.projects.volunteerapp.model.Donor;
@@ -32,12 +37,18 @@ import edu.aau.projects.volunteerapp.utils.BaseActivity;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 
 public class SignUpActivity extends BaseActivity {
+    private static final String ADMIN_ID_EXTRA = "adIdExtra";
     ActivitySignUpBinding bin;
     CustomFirebaseApi api;
     AppSharedPreferences sharedPreferences;
-
-    public static Intent getIntent(Context context){
+    int adminId = -1;
+    public static Intent makeIntent(Context context){
         return new Intent(context, SignUpActivity.class);
+    }
+
+    public static Intent makeIntent(Context context, int adminId){
+        return new Intent(context, SignUpActivity.class)
+                .putExtra(ADMIN_ID_EXTRA, adminId);
     }
 
     @Override
@@ -54,6 +65,14 @@ public class SignUpActivity extends BaseActivity {
         api = CustomFirebaseApi.getInstance();
         sharedPreferences = new AppSharedPreferences(this);
 
+        Bundle bun = getIntent().getExtras();
+        adminId = bun == null? -1 : bun.getInt(ADMIN_ID_EXTRA, -1);
+
+        if (adminId != -1){
+            List<String> roles = Arrays.asList(getResources().getStringArray(R.array.sign_sp_roles_entriesA));
+            ArrayAdapter<String> roleAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, roles);
+            bin.signSpRole.setAdapter(roleAdapter);
+        }
         bin.loginBtnSignUp.setOnClickListener(v -> {
 //            if (!checkInternet()){
 //                UiUtils.makeToast(R.string.not_connected, getBaseContext());
@@ -84,6 +103,11 @@ public class SignUpActivity extends BaseActivity {
 
             if (!UiUtils.checkName(name)){
                 UiUtils.makeToast(R.string.invalid_name, getBaseContext());
+                return;
+            }
+
+            if (!UiUtils.checkPassword(password)){
+                UiUtils.makeToast(R.string.invalid_password, getBaseContext());
                 return;
             }
 
@@ -166,6 +190,21 @@ public class SignUpActivity extends BaseActivity {
                                 donorId = dataSnapshot.getValue(Long.class).intValue() + 1;
                             Log.d("onSuccess: ", "id : " + donorId);
                             sharedPreferences.saveDonorId(donorId);
+                        }
+                    });
+        }
+
+        else if (user.getRole().equals(getString(R.string.admin))){
+            api.insertAdmin(new Admin(user))
+                    .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                        @Override
+                        public void onSuccess(DataSnapshot dataSnapshot) {
+                            Log.d("onSuccess: ", dataSnapshot.getKey());
+                            int adminId = 1;
+                            if (dataSnapshot.getValue(Long.class) != null)
+                                adminId = dataSnapshot.getValue(Long.class).intValue() + 1;
+                            Log.d("onSuccess: ", "id : " + adminId);
+                            sharedPreferences.saveDonorId(adminId);
                         }
                     });
         }

@@ -76,13 +76,17 @@ public class CreateAccountActivity extends BaseActivity {
                         UiUtils.makeToast(R.string.empty_fields, getBaseContext());
                         return;
                     }
-
+                bankName = bin.accountEtBankName.getText().toString();
                 BankAccount account = new BankAccount();
                 account.setAccountNumber(bin.accountEtAccountNumber.getText().toString());
                 account.setIBAN(bin.accountEtIBAN.getText().toString());
                 account.setOwnerId(ownerId);
                 account.setOwnerType(ownerType);
-                account.setBankName(bankName.equals("") ? bin.accountSpBankName.getSelectedItem().toString() : bankName);
+                account.setBankName(
+                        bankName.equals("") ?
+                                bin.accountSpBankName.getSelectedItem().toString()
+                                : bankName
+                );
 
                 UiUtils.showProgressbar(CreateAccountActivity.this);
                 api.createBankAccount(account).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {

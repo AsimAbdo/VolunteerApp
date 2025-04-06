@@ -27,6 +27,7 @@ public class UploadRequestActivity extends BaseActivity {
     CustomFirebaseApi api;
     int serviceSeekerId;
     String startDate = "", endDate = "";
+    int startDay, startMonth, startYear,endDay, endMonth, endYear;
 
     public static Intent makeIntent(Context context, int serviceSeekerId){
         return new Intent(context, UploadRequestActivity.class).putExtra("serviceSeeker", serviceSeekerId);
@@ -52,6 +53,9 @@ public class UploadRequestActivity extends BaseActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         startDate = dayOfMonth + "-" + (month + 1) + "-" + year;
+                        startDay = dayOfMonth;
+                        startMonth = month + 1;
+                        startYear = year;
                         bin.uploadStartDate.setText(startDate);
                     }
                 });
@@ -65,6 +69,9 @@ public class UploadRequestActivity extends BaseActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         endDate = dayOfMonth + "-" + (month + 1) + "-" + year;
+                        endDay = dayOfMonth;
+                        endMonth = month + 1;
+                        endYear = year;
                         bin.uploadEndDate.setText(endDate);
                     }
                 });
@@ -86,6 +93,14 @@ public class UploadRequestActivity extends BaseActivity {
                 }
                 if (endDate.equals("")){
                     UiUtils.makeToast(R.string.enddate_not_selected, getBaseContext());
+                    return;
+                }
+                if (
+                        endYear < startYear
+                        || (endMonth < startMonth && startYear >= endYear)
+                        || (endDay < startDay && startYear >= endDay && startMonth >= endMonth)
+                ){
+                    UiUtils.makeToast(R.string.invalid_date, getBaseContext());
                     return;
                 }
                 String location = bin.uploadEtLocation.getText().toString();

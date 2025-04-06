@@ -45,11 +45,14 @@
             android:layout_centerHorizontal="true"
             android:text="@string/app_name" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/main_iv_tradeMark"
             style="@style/Theme.VolunteerApp.mImageCard"
             android:layout_width="@dimen/_180sdp"
             android:layout_height="@dimen/_180sdp"
+            android:src="@drawable/app_icon"
+            android:padding="@dimen/_10sdp"
+            app:shapeAppearance="@style/Theme.VolunteerApp.mImageCard"
             android:layout_centerHorizontal="true" />
 
         <TextView

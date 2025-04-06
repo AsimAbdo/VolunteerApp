@@ -59,7 +59,10 @@ public class UiUtils {
     }
 
     public static boolean checkName(String name){
-        return Pattern.compile("^([a-zA-z]{3,} ){3,}[a-zA-z]{2,}").matcher(name).matches();
+        return name.length() > 8;
+    }
+    public static boolean checkPassword(String password){
+        return password.length() >= 6;
     }
 
     public static void makeToast(String msg, Context context){

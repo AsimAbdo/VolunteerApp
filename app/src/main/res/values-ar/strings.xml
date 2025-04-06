@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">تطبيق العمل الطوعي</string>
+    <string name="main_btn_login">نسجيل الدخول</string>
+    <string name="main_btn_create">انشاء حساب</string>
+    <string name="app_description">هذا التطبيق صنع من أجل ادارة العمل الطوعي في السودان.
+        \nهذا التطبيق يقوم بادارة المتطوعين, و التبرعات, و الخدمات.</string>
+    <string name="login_et_email_or_name">البريد الالكتروني</string>
+    <string name="login_et_password">كلمة السر</string>
+    <string name="login_tv_forget_password">نسيت كلمة السر؟</string>
+    <string name="login_btn_sign_up">انشاء حساب جديد</string>
+    <string name="login_tv_label">تسجيل الدخول</string>
+    <string name="sign_et_name">الاسم الكامل</string>
+    <string name="sign_et_email">email@gmail.com</string>
+    <string name="sign_tv_role_label">أدخل الدور الذي ترغب فيه</string>
+    <string name="empty_fields">من فضلك املأ كل الحقول</string>
+    <string name="password_doesnt_match">كلمة السر لا تتطابق</string>
+    <string name="not_connected">Please open Mobile network or connect to wifi to continue</string>
+    <string name="service_seeker">Service Seeker</string>
+    <string name="volunteer">Volunteer</string>
+    <string name="donor">Donor</string>
+    <string name="invalid_email">ايميل غير صحيح</string>
+    <string name="invalid_name">الاسم غير صحيح</string>
+    <string name="add_et_username">اسم المستخدم</string>
+    <string name="add_et_skills">المهارات</string>
+    <string name="wrong_validation">الايميل أو كلمة السر غير صحيحين</string>
+    <string name="progress_text">جاري التحميل...</string>
+    <string name="un_activated_account">حسابك غير مفعل الرجاء التحقق من ايميلك.</string>
+    <string name="activate_account_label">تم ارسال رسالة التحقق الى الايميل. تفقد رسائلك.</string>
+    <string name="ss_menu_logout">تسجيل خروج</string>
+    <string name="user_exception_message">الايميل غير صحيح</string>
+    <string name="user_collisionException">الايميل مستخدم بالفعل</string>
+    <string name="login_title">تسجيل دخول</string>
+    <string name="signup_title">انشاء حساب</string>
+    <string name="empty_email">أدخل الايميل أولا</string>
+    <string name="rest_password_send_successfully">تم ارسال ايميل تغيير كلمة السر. تحقق من الايميل.</string>
+    <string name="email_not_used">الايميل المدخل غير مسجل.</string>
+    <string name="upload_title">رفع المهمة</string>
+    <string name="task_desc">أدخل الوصف</string>
+    <string name="upload_tv_startDate">ضغط لتحديد تاريخ بداية المهمة</string>
+    <string name="upload_tv_endDate">اضغط لتحديد تاريخ نهاية امهمة</string>
+    <string name="btn_submit">رفع</string>
+    <string name="task_loc">أدخل الموقع</string>
+    <string name="startdate_not_selected">لم يتم تحديد تاريخ بداية المهمة</string>
+    <string name="enddate_not_selected">لم يتم تحديد تاريخ نهاية المهمة</string>
+    <string name="taskCreatedSuccessfully">تم انشاء المهمة بنجاح</string>
+    <string name="new_task">Not verified yet</string>
+    <string name="header_desc">تطوع من أجل دولتك</string>
+    <string name="nav_profile">الملف الشخصي</string>
+    <string name="open_drawer">فتح</string>
+    <string name="close_drawer">غلق</string>
+
+    <string-array name="sign_sp_roles_entries">
+        <item>Select a Role</item>
+        <item>Service Seeker</item>
+        <item>Volunteer</item>
+        <item>Donor</item>
+    </string-array>
+
+    <string-array name="sign_sp_roles_entriesA">
+        <item>Select a Role</item>
+        <item>Service Seeker</item>
+        <item>Volunteer</item>
+        <item>Donor</item>
+        <item>Admin</item>
+    </string-array>
+
+    <string-array name="bank_name_entries">
+        <item>Omdurman Bank</item>
+        <item>Faisal Bank</item>
+        <item>Al Khortoum Bank</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="serviceType">
+        <item>اختار نوع الخدمة</item>
+        <item>خدمة سكن</item>
+        <item>خدمة طبية</item>
+        <item>خدمة طعام</item>
+        <item>خدمة توفير</item>
+        <item>غير ذلك</item>
+    </string-array>
+
+    <string name="not_taken">Not taken yet</string>
+    <string name="need_resources">Need resources</string>
+    <string name="task_rejected">task is rejected</string>
+    <string name="assign_member">member</string>
+    <string name="assign_team">team</string>
+
+
+    <string-array name="task_filter">
+        <item>Not verified yet</item>
+        <item>Not taken yet</item>
+        <item>Need resources</item>
+        <item>Finished Tasks</item>
+    </string-array>
+
+    <string-array name="assignedTo_filter">
+        <item>Member</item>
+        <item>Team</item>
+    </string-array>
+
+    <string-array name="user_filter">
+        <item>Service Seeker</item>
+        <item>Volunteer</item>
+        <item>Donor</item>
+    </string-array>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="admin_title">لوحة تحكم المشرف</string>
+    <string name="user_dashboard">لوحة تحكم المستخدم</string>
+    <string name="admin">Admin</string>
+    <string name="admin_tv_manage_users">ادارة المستخدمين</string>
+    <string name="admin_tv_manage_resource">ادارة الموارد</string>
+    <string name="admin_tv_manage_task">ادارة المهام</string>
+    <string name="admin_tv_manage_report">عرض التقارير</string>
+    <string name="accept">قبول</string>
+    <string name="reject">رفض</string>
+    <string name="vol_tv_available_task">المهام المتوفرة</string>
+    <string name="vol_tv_current_task">المهام الحالية</string>
+    <string name="vol_tv_manageSkills">ادارة المهارات</string>
+    <string name="vol_tv_manageAvailability">ادارة التوافر</string>
+    <string name="btn_add">اضافة</string>
+    <string name="btn_save">حفظ</string>
+    <string name="currentSkills">المهارات الحالية</string>
+    <string name="ms_et_skills_hint">أكتب لاضافة مهارة</string>
+    <string name="op_done">تم</string>
+    <string name="address_hint">العنوان</string>
+    <string name="phone_hint">رقم الهاتف</string>
+    <string name="profile_tv_dateJoined">بدأ في : </string>
+    <string name="profile_tv_role">الدور : </string>
+    <string name="email_text">الايميل : </string>
+    <string name="assignToMember">Member</string>
+    <string name="ct_tv_totalPrice">المبلغ الكلي</string>
+    <string name="ct_tv_providedPrice">المبلغ المستلم</string>
+    <string name="ct_btn_postUpdate">Post Update</string>
+    <string name="ct_btn_taskFinished">Finish the Task</string>
+    <string name="btn_provide">منح</string>
+    <string name="donor_tv_donate">تبرع</string>
+    <string name="donor_tv_viewPriviousDonates">التبرعات السابقة</string>
+    <string name="account_et_accountNumberHint">أدخل رقم الحساب</string>
+    <string name="account_et_ibanHint">أدخل ال IBAN</string>
+    <string name="account_et_accountNameHint">أدخل اسم البنك</string>
+    <string name="acItem_tv_IBAN">IBAN : </string>
+    <string name="completedTasks">المهمات المكتملة</string>
+    <string name="availability">التوافر : </string>
+    <string name="balance">المبلغ : </string>
+    <string name="upgradeToTeamLeader">Upgrade to Team Leader</string>
+    <string name="individual">Individual</string>
+    <string name="team">Team</string>
+    <string name="enterBalance">أدخل المبلغ</string>
+    <string name="insufficentResources">ليس لديك رصيد كافي</string>
+    <string name="dialog_msg">أدخل المبلغ الأولي </string>
+    <string name="assignToLabel">اسناد الى</string>
+    <string name="amount_hint">ادخل المبلغ</string>
+    <string name="donor_tv_label">الحسابات المتاحة للتطوع</string>
+    <string name="donor_tv_label2">حساباتي</string>
+    <string name="donationSuccessfull">شكرا لتبرعك</string>
+    <string name="don_tv_title">التبرعات</string>
+    <string name="receivingEntity">الوحدة المستقبلة : </string>
+    <string name="invalid_receiverAccount">المستقبل ليس لديه حسابات مسجلة</string>
+    <string name="invalid_donorAccount">ليس لديك حسابات بنكية</string>
+    <string name="select_more_than_one">لا يمكنك تحديد أكثر من حساب في نفس الوقت</string>
+    <string name="select_less_than_one">يجب ان تحدد حساب مستقبل واحد على الأقل</string>
+    <string name="transfertoDifferentBank">لا يمكنك التحويل الى حساب من بنك مختلف</string>
+    <string name="endTask">Finish The Task</string>
+    <string name="finishedTask">Finished Tasks</string>
+    <string name="invalid_date">تاريخ الانتهاء يجب ان يكون بعد تاريخ البداية</string>
+    <string name="invalid_password">كلمة السر يجب ان تحتوي على ستة احرف على ستة احرف</string>
+    <!--    <string name="redundantskill">The Skill Already exists</string>-->
+</resources>

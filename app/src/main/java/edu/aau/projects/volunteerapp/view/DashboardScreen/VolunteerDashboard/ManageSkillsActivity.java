@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -70,7 +71,6 @@ public class ManageSkillsActivity extends BaseActivity {
                 if (adapter.addSkill(skill)){
                     UiUtils.makeToast(R.string.currentSkills, getBaseContext());
                 }
-                UiUtils.makeToast(skillsList.toString(), getBaseContext());
             }
         });
 
@@ -79,7 +79,6 @@ public class ManageSkillsActivity extends BaseActivity {
             public void onClick(View v) {
                 Map<String, Object> data = new HashMap<>();
                 data.put("skills", adapter.getSkills());
-                UiUtils.makeToast("id : " + volunteerId + " \n" + data.toString(), getBaseContext());
                 UiUtils.showProgressbar(ManageSkillsActivity.this);
                 api.updateVolunteer(volunteerId, data).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

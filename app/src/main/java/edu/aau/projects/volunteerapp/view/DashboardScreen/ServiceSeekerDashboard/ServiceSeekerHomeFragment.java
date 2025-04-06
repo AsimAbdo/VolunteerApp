@@ -60,13 +60,11 @@ public class ServiceSeekerHomeFragment extends Fragment {
         bin.ssRvRequests.setLayoutManager(new GridLayoutManager(getActivity(), 1));
         bin.ssRvRequests.setHasFixedSize(true);
 
-        bin.uploadRequestBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().startActivity(UploadRequestActivity.makeIntent(getContext(), serviceSeeker.getSeekerId()));
-            }
-        });
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
         getFirebaseInfo();
     }
 
@@ -79,6 +77,7 @@ public class ServiceSeekerHomeFragment extends Fragment {
                         snapshot.getChildren()) {
                     serviceSeeker = dataSnapshot.getValue(ServiceSeeker.class);
                 }
+                enableButton();
                 getTasks();
             }
 
@@ -106,6 +105,15 @@ public class ServiceSeekerHomeFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                     Log.d("TAG", "onCancelled: ");
+            }
+        });
+    }
+
+    private void enableButton(){
+        bin.uploadRequestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(UploadRequestActivity.makeIntent(getContext(), serviceSeeker.getSeekerId()));
             }
         });
     }

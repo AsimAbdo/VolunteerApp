@@ -32,7 +32,9 @@ import edu.aau.projects.volunteerapp.model.Volunteer;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
 import edu.aau.projects.volunteerapp.utils.CustomDialogFragment;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
+import edu.aau.projects.volunteerapp.view.DashboardScreen.DonorDashboard.DonateActivity;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.ServiceSeekerDashboard.UploadRequestActivity;
+import edu.aau.projects.volunteerapp.view.SignUpScreen.SignUpActivity;
 
 public class AdminManageActivity extends BaseActivity implements CustomDialogFragment.OnDialogButtonPressedListener {
     private static final String ADMIN_ID_KEY = "adminId";
@@ -97,11 +99,10 @@ public class AdminManageActivity extends BaseActivity implements CustomDialogFra
 
                 }
             });
-            bin.fabCreateTask.setVisibility(View.VISIBLE);
             bin.fabCreateTask.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    UploadRequestActivity.makeIntent(getBaseContext(), 0);
+                    UploadRequestActivity.makeIntent(getBaseContext(), adminId);
                 }
             });
 
@@ -109,6 +110,12 @@ public class AdminManageActivity extends BaseActivity implements CustomDialogFra
     }
 
     private void getUsers(){
+        bin.fabCreateTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(SignUpActivity.makeIntent(getBaseContext(), adminId));
+            }
+        });
         adapter.setOnItemClickListener(new OnAcceptRejectClickListener() {
             @Override
             public void onCLick(MTask task, int accept) {
@@ -171,9 +178,14 @@ public class AdminManageActivity extends BaseActivity implements CustomDialogFra
             taskAdapter.setOnProvideButtonClickListener(new TaskV2Adapter.OnProvideButtonClickListener() {
                 @Override
                 public void onButtonClick(MTask task) {
-                    startActivity(TaskProvideActivity.makeIntent(getBaseContext(), adminId, task));
+                    startActivity(DonateActivity.makeIntent(getBaseContext(), getString(R.string.volunteer),
+                            adminId, task.getAssignedToId(), task));
                 }
             });
+        }
+        else if (status.equals(getString(R.string.finishedTask))) {
+            taskAdapter = new TaskV2Adapter(tasks, TaskV2Adapter.TASK_VIEW);
+            taskAdapter.setShowAcceptRejectButtons(1);
         }
         bin.viewRvData.setAdapter(taskAdapter);
 //        UiUtils.showProgressbar(this);

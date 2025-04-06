@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -21,9 +23,11 @@ import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
 import edu.aau.projects.volunteerapp.controller.uiadapters.TaskV2Adapter;
 import edu.aau.projects.volunteerapp.databinding.ActivityCurrentTasksBinding;
 import edu.aau.projects.volunteerapp.model.MTask;
+import edu.aau.projects.volunteerapp.model.Volunteer;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
+import edu.aau.projects.volunteerapp.utils.UiUtils;
 
-public class CurrentTasksActivity extends BaseActivity {
+public class CurrentTasksActivity extends BaseActivity implements TaskV2Adapter.OnProvideButtonClickListener {
     private static final String VOLUNTEER_ID_EXTRA = "vol_id";
     ActivityCurrentTasksBinding bin;
     CustomFirebaseApi api;
@@ -44,6 +48,7 @@ public class CurrentTasksActivity extends BaseActivity {
     private void init(){
         bin = ActivityCurrentTasksBinding.inflate(getLayoutInflater());
         setContentView(bin.getRoot());
+        setSupportActionBar(bin.ctToolbar);
 
         Bundle bun = getIntent().getExtras();
         if (bun != null)
@@ -53,6 +58,8 @@ public class CurrentTasksActivity extends BaseActivity {
 
         tasks = new ArrayList<>();
         adapter = new TaskV2Adapter(tasks, TaskV2Adapter.CURRENT_TASK_VIEW);
+        adapter.setOnProvideButtonClickListener(this);
+
         bin.ctRvCurrentTasks.setAdapter(adapter);
         bin.ctRvCurrentTasks.setLayoutManager(new GridLayoutManager(this, 1));
         bin.ctRvCurrentTasks.setHasFixedSize(true);
@@ -86,6 +93,51 @@ public class CurrentTasksActivity extends BaseActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+    }
+
+    @Override
+    public void onButtonClick(MTask mTask) {
+        finishTask(mTask);
+    }
+
+    private void finishTask(MTask mTask){
+        mTask.setStatus(getString(R.string.finishedTask));
+        UiUtils.showProgressbar(this);
+        api.updateTask(mTask).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                UiUtils.dismissDialog();
+                if (task.isSuccessful()){
+                    api.getVolunteer(volunteerId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()){
+                                Volunteer volunteer = new Volunteer();
+                                for (DataSnapshot child : snapshot.getChildren()) {
+                                    volunteer = child.getValue(Volunteer.class);
+                                }
+                                volunteer.setCompletedTasks(volunteer.getCompletedTasks() + 1);
+                                api.updateVolunteer(volunteerId, volunteer.toMap()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+                                            UiUtils.makeToast(R.string.op_done, getBaseContext());
+                                        }
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    tasks.remove(mTask);
+                    adapter.setTasks(tasks);
+                }
             }
         });
     }

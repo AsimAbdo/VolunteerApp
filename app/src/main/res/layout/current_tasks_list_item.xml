@@ -111,22 +111,10 @@
                 android:layout_below="@id/ct_ln_price">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/ct_btn_postUpdate"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="@dimen/_8sdp"
-                    style="@style/Theme.VolunteerApp.mLinearButton"
-                    android:text="@string/ct_btn_postUpdate"
-                    android:backgroundTint="@color/info"
-                    android:layout_marginTop="0dp"/>
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/ct_btnDone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="@dimen/_7sdp"
                     style="@style/Theme.VolunteerApp.mLinearButton"
                     android:text="@string/ct_btn_taskFinished"
                     android:backgroundTint="@color/accent"

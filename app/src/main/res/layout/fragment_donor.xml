@@ -31,7 +31,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_90sdp"
-                        android:src="@drawable/resource_icon"/>
+                        android:src="@drawable/donate_icon"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_90sdp"
-                        android:src="@drawable/users_icon"/>
+                        android:src="@drawable/donation_icon"/>
 
                     <TextView
                         android:layout_width="match_parent"

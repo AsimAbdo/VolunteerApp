@@ -41,6 +41,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="@dimen/_15sdp"
-        android:visibility="gone"
         app:shapeAppearance="@style/Theme.VolunteerApp.mFloatingActionButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

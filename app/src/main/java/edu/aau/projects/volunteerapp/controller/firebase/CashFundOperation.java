@@ -15,7 +15,7 @@ public class CashFundOperation implements FirebaseAccess {
 
     private static final String CASH_FUND_COUNTER = "cash_fund_counter";
     private static final String BANK_ACCOUNT_COUNTER = "bank_account_counter";
-    private static final String DONATIONS_COUNTER = "bank_account_counter";
+    private static final String DONATIONS_COUNTER = "donations_counter";
 
     public static Task<DataSnapshot> insertCashFund(CashFund cashFund){
         return Counter.getCounter(CASH_FUND_COUNTER).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -25,7 +25,6 @@ public class CashFundOperation implements FirebaseAccess {
                     int cashFundId = 1;
                     if (task.getResult().getValue(Integer.class) != null)
                         cashFundId = task.getResult().getValue(Integer.class);
-                    CashFund cashFund = new CashFund();
                     cashFund.setCashFundId(cashFundId);
                     cashFundsRef.child(String.valueOf(cashFundId)).setValue(cashFund);
                 }
@@ -70,7 +69,7 @@ public class CashFundOperation implements FirebaseAccess {
                     if (task.getResult().getValue(Integer.class) != null)
                         donoationId = task.getResult().getValue(Integer.class) + 1;
                     donation.setDonationId(donoationId);
-                    donorsRef.child(String.valueOf(donation.getDonationId())).setValue(donation);
+                    donationsRef.child(String.valueOf(donation.getDonationId())).setValue(donation);
                     Counter.updateCounter(DONATIONS_COUNTER, donoationId);
                 }
             }

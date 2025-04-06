@@ -63,11 +63,11 @@ public class MainActivity extends BaseActivity {
         }
 
         bin.mainBtnLogin.setOnClickListener(view -> {
-            startActivity(LoginActivity.getIntent(getBaseContext()));
+            startActivity(LoginActivity.makeIntent(getBaseContext()));
         });
 
         bin.mainBtnCreate.setOnClickListener(v -> {
-            startActivity(SignUpActivity.getIntent(getBaseContext()));
+            startActivity(SignUpActivity.makeIntent(getBaseContext()));
         });
     }
 

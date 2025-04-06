@@ -14,6 +14,8 @@
         style="@style/Theme.VolunteerApp.mImageCard"
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginStart="@dimen/_20sdp"
+        android:src="@drawable/app_icon"
+        android:padding="@dimen/_10sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/Theme.VolunteerApp.mFloatingActionButton" />

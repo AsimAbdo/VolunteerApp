@@ -32,6 +32,15 @@
                 style="@style/Theme.VolunteerApp.mTextStyle"
                 android:layout_below="@id/acItem_tv_bankName"/>
 
+            <CheckBox
+                android:id="@+id/acItem_cb_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/acItem_tv_bankName"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-10dp"
+                android:visibility="gone"/>
+
             <LinearLayout
                 android:id="@+id/acItem_tv_accountData"
                 android:layout_width="match_parent"

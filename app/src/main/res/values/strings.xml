@@ -3,7 +3,7 @@
     <string name="main_btn_login">Login</string>
     <string name="main_btn_create">Sign up</string>
     <string name="app_description">This app is made for Managing Volunteer work in Sudan.\nThis app manages volunteer, Donations, and services.</string>
-    <string name="login_et_email_or_name">User name or Email</string>
+    <string name="login_et_email_or_name">Enter Email</string>
     <string name="login_et_password">Password</string>
     <string name="login_tv_forget_password">Forget your password?</string>
     <string name="login_btn_sign_up">Create new Account</string>
@@ -55,6 +55,14 @@
         <item>Donor</item>
     </string-array>
 
+    <string-array name="sign_sp_roles_entriesA">
+        <item>Select a Role</item>
+        <item>Service Seeker</item>
+        <item>Volunteer</item>
+        <item>Donor</item>
+        <item>Admin</item>
+    </string-array>
+
     <string-array name="bank_name_entries">
         <item>Omdurman Bank</item>
         <item>Faisal Bank</item>
@@ -64,16 +72,15 @@
 
     <string-array name="serviceType">
         <item>Select Service Type</item>
-        <item>Type 1</item>
-        <item>Type 2</item>
-        <item>Type 3</item>
-        <item>Type 4</item>
-        <item>Type 5</item>
+        <item>Housing Service</item>
+        <item>Medical Service</item>
+        <item>Food Service</item>
+        <item>Provide a Service</item>
+        <item>None above</item>
     </string-array>
 
     <string name="not_taken">Not taken yet</string>
     <string name="need_resources">Need resources</string>
-    <string name="task_done">task is done</string>
     <string name="task_rejected">task is rejected</string>
     <string name="assign_member">member</string>
     <string name="assign_team">team</string>
@@ -83,6 +90,7 @@
         <item>Not verified yet</item>
         <item>Not taken yet</item>
         <item>Need resources</item>
+        <item>Finished Tasks</item>
     </string-array>
 
     <string-array name="assignedTo_filter">
@@ -147,5 +155,14 @@
     <string name="donationSuccessfull">Thank you for your donation</string>
     <string name="don_tv_title">Donations</string>
     <string name="receivingEntity">"Receiving Entity : "</string>
+    <string name="invalid_receiverAccount">The receiver has no Accounts</string>
+    <string name="invalid_donorAccount">You have no accounts</string>
+    <string name="select_more_than_one">You can/\'t select more than 1 Account</string>
+    <string name="select_less_than_one">You have to select 1 accounts</string>
+    <string name="transfertoDifferentBank">You can\\\'t transfer to a different bank</string>
+    <string name="endTask">Finish The Task</string>
+    <string name="finishedTask">Finished Tasks</string>
+    <string name="invalid_date">The end date is before the start date</string>
+    <string name="invalid_password">Password should be at least 6 character</string>
     <!--    <string name="redundantskill">The Skill Already exists</string>-->
 </resources>
