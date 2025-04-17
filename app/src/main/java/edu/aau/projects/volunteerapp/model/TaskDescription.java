@@ -1,6 +1,8 @@
 package edu.aau.projects.volunteerapp.model;
 
-public class TaskDescription {
+import java.io.Serializable;
+
+public class TaskDescription implements Serializable {
 
     private String type;
     private String location;
@@ -13,9 +15,12 @@ public class TaskDescription {
         this.type = "";
         this.location = "";
         this.description = "";
+        this.amount = 0;
+        this.providedAmount = 0;
     }
 
     public TaskDescription(String type, String location, String description) {
+        this();
         this.type = type;
         this.location = location;
         this.description = description;
@@ -49,11 +54,6 @@ public class TaskDescription {
     public void setDescription(String description) {
         this.description = description;
     }
-
-//    public double getAmount() {
-//        return amount;
-//    }
-
 
     public double getAmount() {
         return amount;

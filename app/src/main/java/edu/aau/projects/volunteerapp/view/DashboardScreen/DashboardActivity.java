@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -147,9 +148,15 @@ public class DashboardActivity extends BaseActivity implements NavigationView.On
 
     @Override
     public void onPickImageClick() {
-        if (checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, getBaseContext()))
+        if ( checkPermission(Manifest.permission.MANAGE_EXTERNAL_STORAGE, getBaseContext()) || checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, getBaseContext()))
             launcher.launch("image/*");
-        else
-            requestPermissions(this, 1, Manifest.permission.READ_EXTERNAL_STORAGE);
+        else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+                requestPermissions(this, 1, Manifest.permission.MANAGE_EXTERNAL_STORAGE);
+            } else {
+                requestPermissions(this, 1, Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
+        }
+
     }
 }

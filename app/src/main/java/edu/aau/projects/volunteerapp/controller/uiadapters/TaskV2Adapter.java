@@ -101,9 +101,7 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
             bin.taskStartDate.setText(task.getStartDate());
             bin.taskEndDate.setText(task.getEndDate());
             bin.taskAssignTo.setEnabled(false);
-            bin.taskAssignTo.setSelection(
-                    task.getAssignedTo().equals(activity.getString(R.string.assignToMember)) ? 0 : 1
-            );
+            bin.taskAssignTo.setSelection(0);
 
             if (showAcceptRejectButtons == 0){
                 bin.taskAccept.setOnClickListener(new View.OnClickListener() {
@@ -181,6 +179,7 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
         public void onBind(int position) {
             MTask task = tasks.get(position);
             bin.taskTitle.setText(task.getDescription().getType());
+            bin.taskLocation.setText(task.getDescription().getLocation());
             bin.taskStatus.setText(String.valueOf(task.getDescription().getAmount()));
             bin.taskStartDate.setText(task.getStartDate());
             bin.taskEndDate.setText(task.getEndDate());
