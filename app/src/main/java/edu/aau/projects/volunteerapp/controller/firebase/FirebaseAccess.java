@@ -10,6 +10,7 @@ public interface FirebaseAccess {
     String USERS_TB_NAME = "Users";
     String VOLUNTEERS_TB_NAME = "Volunteer";
     String ADMINS_TB_NAME = "admins";
+    String REPORTS_TB_NAME = "reports";
     String TEAM_LEADERS_TB_NAME = "Volunteer";
     String VOLUNTEER_GROUPS_TB_NAME = "VolunteerGroups";
     String DONORS_TB_NAME = "Donors";
@@ -37,6 +38,7 @@ public interface FirebaseAccess {
     DatabaseReference cashFundsRef = DATABASE_REFERENCE.child(CASH_FUNDS_TB_NAME);
     DatabaseReference bankAccountsRef = DATABASE_REFERENCE.child(BANK_ACCOUNTS_TB_NAME);
     DatabaseReference donationsRef = DATABASE_REFERENCE.child(DONATIONS_TB_NAME);
+    DatabaseReference reportsRef = DATABASE_REFERENCE.child(REPORTS_TB_NAME);
 
 
 }

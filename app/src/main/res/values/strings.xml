@@ -165,5 +165,16 @@
     <string name="invalid_date">The end date is before the start date</string>
     <string name="invalid_password">Password should be at least 6 character</string>
     <string name="account_number">"Account Number: "</string>
+    <string name="account_deleted">Account Deleted Successfully</string>
+    <string name="error">Something went wrong</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="del_title">Delete</string>
+    <string name="del_account_message">are you sure you want to delete this account?</string>
+    <string name="btn_delete_account">Delete Account</string>
+    <string name="generateReportTitle">Generate Report</string>
+    <string name="generateReportMessage">Enter Description</string>
+    <string name="invalid_number">Invalid number</string>
+    <string name="report">"Report "</string>
     <!--    <string name="redundantskill">The Skill Already exists</string>-->
 </resources>

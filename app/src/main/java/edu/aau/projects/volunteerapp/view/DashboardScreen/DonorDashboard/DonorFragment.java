@@ -82,7 +82,7 @@ public class DonorFragment extends Fragment {
         bin.donorViewReports.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getActivity().startActivity(ViewReportsActivity.makeIntent(getContext()));
             }
         });
         bin.donorCashFund.setOnClickListener(new View.OnClickListener() {

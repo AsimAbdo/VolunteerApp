@@ -79,4 +79,8 @@ public class CashFundOperation implements FirebaseAccess {
     public static Query getDonations(int donorId) {
         return donationsRef.orderByChild("donorId").equalTo(donorId);
     }
+
+    public static Task<Void> deleteBankAccount(BankAccount account) {
+        return bankAccountsRef.child(String.valueOf(account.getAccountId())).removeValue();
+    }
 }

@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             style="@style/Theme.VolunteerApp.mEditTextStyle"
-            android:inputType="number"
+            android:inputType="textPersonName"
             android:visibility="gone"
             android:layout_below="@id/cf_tv_message"/>
 

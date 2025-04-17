@@ -230,10 +230,15 @@ public class AdminManageActivity extends BaseActivity implements CustomDialogFra
 
     @Override
     public void onDialogButtonPressedClick(String text) {
-        double amount = Double.parseDouble(text);
-        mTask.getDescription().setAmount(amount);
-        mTask.setStatus(EntriesUtils.getStatusList()[1]);
-        updateTask(mTask);
-        UiUtils.dismissDialogFragment();
+        try {
+            double amount = Double.parseDouble(text);
+            mTask.getDescription().setAmount(amount);
+            mTask.setStatus(EntriesUtils.getStatusList()[1]);
+            updateTask(mTask);
+            UiUtils.dismissDialogFragment();
+        } catch (Exception e){
+            UiUtils.makeToast(R.string.invalid_number, getBaseContext());
+        }
+
     }
 }

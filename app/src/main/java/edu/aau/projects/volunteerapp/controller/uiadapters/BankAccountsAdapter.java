@@ -1,5 +1,6 @@
 package edu.aau.projects.volunteerapp.controller.uiadapters;
 
+import android.accounts.OnAccountsUpdateListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +15,24 @@ import java.util.List;
 import edu.aau.projects.volunteerapp.R;
 import edu.aau.projects.volunteerapp.databinding.CustomBankaccountItemBinding;
 import edu.aau.projects.volunteerapp.model.BankAccount;
+import edu.aau.projects.volunteerapp.view.DashboardScreen.AdminDashborad.OnAcceptRejectClickListener;
 
 public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapter.BankAccountHolder> {
     List<BankAccount> bankAccounts, checkedAccounts = new ArrayList<>();
     boolean showCheckButton = false;
+    OnAccountClickListener onDeleteListener;
+
+    public void setOnDeleteListener(OnAccountClickListener onDeleteListener) {
+        this.onDeleteListener = onDeleteListener;
+    }
 
     public BankAccountsAdapter(List<BankAccount> bankAccounts) {
         this.bankAccounts = bankAccounts;
+    }
+
+    public BankAccountsAdapter(List<BankAccount> bankAccounts, OnAccountClickListener onDeleteListener) {
+        this.bankAccounts = bankAccounts;
+        this.onDeleteListener = onDeleteListener;
     }
 
     public BankAccountsAdapter(List<BankAccount> bankAccounts, boolean showCheckButton) {
@@ -85,13 +97,20 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
                     }
                 });
 
-                bin.acItemIvDelete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // TODO on delete bankAccount
-                    }
-                });
+
             }
+            bin.acItemIvDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO on delete bankAccount
+                    if (onDeleteListener != null)
+                        onDeleteListener.onAccountClick(account);
+                }
+            });
         }
+    }
+
+    public interface OnAccountClickListener {
+        void onAccountClick(BankAccount account);
     }
 }

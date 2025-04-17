@@ -2,6 +2,7 @@ package edu.aau.projects.volunteerapp.view.DashboardScreen;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -24,6 +25,8 @@ import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -40,12 +43,14 @@ import edu.aau.projects.volunteerapp.model.Volunteer;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
 import edu.aau.projects.volunteerapp.utils.ImageUtils;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
+import edu.aau.projects.volunteerapp.view.HomeScreen.MainActivity;
 
 public class ProfileFragment extends Fragment {
 
 //    private static final String ROLE_ID_EXTRA = "roleId";
     private static final String ROLE_EXTRA = "role";
     private static final String IMAGE_EXTRA = "image";
+    private static final String TAG = "ProfileFragment";
     private int roleId;
     private String role;
     FragmentProfileBinding bin;
@@ -53,6 +58,10 @@ public class ProfileFragment extends Fragment {
     User currentUser, original;
     OnPickImageClickListener listener;
     private String image;
+    Donor donor;
+    Volunteer volunteer;
+    ServiceSeeker serviceSeeker;
+    Admin admin;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -110,29 +119,29 @@ public class ProfileFragment extends Fragment {
                             roleId = serviceSeeker.getSeekerId();
                         }
                         else if (role.equals("Admin")) {
-                            Admin admin = child.getValue(Admin.class);
+                            admin = child.getValue(Admin.class);
                             user = admin.getUser();
                             roleId = admin.getAdminId();
                         }
                         else if (role.equals("Volunteer")) {
-                            Volunteer volunteer = child.getValue(Volunteer.class);
+                            volunteer = child.getValue(Volunteer.class);
                             user = volunteer.getUser();
                             roleId = volunteer.getV_id();
                         }
                         else if (role.equals("Donor")) {
-                            Donor donor = child.getValue(Donor.class);
+                            donor = child.getValue(Donor.class);
                             user = donor.getUser();
                             roleId = donor.getDonorId();
                         }
                         else if (role.equals("Team Leader")) {
-                            Donor donor = child.getValue(Donor.class);
+                            donor = child.getValue(Donor.class);
                             user = donor.getUser();
                             roleId = donor.getDonorId();
                         }
                     }
                     original = user;
                     currentUser = user.copy();
-                    putData(original);
+                    putData(currentUser);
                 }
             }
 
@@ -195,6 +204,75 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+
+        bin.profileBtnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UiUtils.showAlertDialog(getActivity(), R.string.del_title, R.string.del_account_message, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteProfileAccount();
+                    }
+                }, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        UiUtils.dismissDialog();
+                    }
+                });
+            }
+        });
+    }
+
+    private void deleteProfileAccount() {
+        UiUtils.showProgressbar(getActivity());
+        Log.d(TAG, "deleteProfileAccount: ");
+
+        AuthCredential credential = EmailAuthProvider.getCredential(currentUser.getEmail(), currentUser.getPassword());
+        api.getCurrentUser().reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    api.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Log.d(TAG, "onComplete: ");
+                            if (task.isSuccessful()){
+                                Log.d(TAG, "onComplete: successful");
+                                Task<Void> voidTask = null;
+                                if (admin != null)
+                                    voidTask = api.deleteUser(currentUser, admin);
+                                else if (volunteer != null)
+                                    voidTask = api.deleteUser(currentUser, volunteer);
+                                else if (serviceSeeker != null)
+                                    voidTask = api.deleteUser(currentUser, serviceSeeker);
+                                else if (donor != null)
+                                    voidTask = api.deleteUser(currentUser, donor);
+
+                                voidTask.addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Log.d(TAG, "onComplete: 2");
+                                        UiUtils.dismissDialog();
+                                        if (task.isSuccessful()){
+                                            Log.d(TAG, "onComplete: 2 successful");
+                                            UiUtils.makeToast(R.string.account_deleted, getContext());
+                                            getActivity().startActivity(MainActivity.makeIntent(getContext()));
+                                            getActivity().finish();
+                                        }
+                                    }
+                                });
+                            }
+                            else
+                                Log.d(TAG, "onComplete: " + task.getException().getMessage());
+                        }
+                    });
+                }
+                else {
+                    Log.d(TAG, "onComplete: 3" + task.getException().getMessage());
+                }
+            }
+        });
+
     }
 
     private void enableFields(ImageView editImage, EditText editText){

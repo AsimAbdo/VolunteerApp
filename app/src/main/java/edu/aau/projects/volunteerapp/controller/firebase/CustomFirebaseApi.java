@@ -14,6 +14,7 @@ import edu.aau.projects.volunteerapp.model.BankAccount;
 import edu.aau.projects.volunteerapp.model.Donation;
 import edu.aau.projects.volunteerapp.model.Donor;
 import edu.aau.projects.volunteerapp.model.MTask;
+import edu.aau.projects.volunteerapp.model.Report;
 import edu.aau.projects.volunteerapp.model.ServiceSeeker;
 import edu.aau.projects.volunteerapp.model.User;
 import edu.aau.projects.volunteerapp.model.Volunteer;
@@ -144,5 +145,30 @@ public class CustomFirebaseApi implements FirebaseAccess {
 
     public Query getDonations(int donorId) {
         return CashFundOperation.getDonations(donorId);
+    }
+
+    public Task<Void> deleteBankAccount(BankAccount account) {
+        return CashFundOperation.deleteBankAccount(account);
+    }
+
+    public Task<Void> deleteUser(User user, ServiceSeeker serviceSeeker) {
+        return UpdateUsersData.deleteUser(user, serviceSeeker);
+    }
+    public Task<Void> deleteUser(User user, Admin admin) {
+        return UpdateUsersData.deleteUser(user, admin);
+    }
+    public Task<Void> deleteUser(User user, Volunteer volunteer) {
+        return UpdateUsersData.deleteUser(user, volunteer);
+    }
+    public Task<Void> deleteUser(User user, Donor donor) {
+        return UpdateUsersData.deleteUser(user, donor);
+    }
+
+    public Task<DataSnapshot> generateReport(Report report){
+        return ReportsOperations.generateReport(report);
+    }
+
+    public Query getReports(){
+        return ReportsOperations.getReports();
     }
 }

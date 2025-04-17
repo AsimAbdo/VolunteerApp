@@ -3,10 +3,12 @@ package edu.aau.projects.volunteerapp.utils;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -76,6 +78,20 @@ public class UiUtils {
     public static void showProgressbar(Activity activity){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setView(R.layout.progress_layout)
+                .setCancelable(false);
+        dialog = builder.create();
+        dialog.show();
+    }
+
+    public static void showAlertDialog(Activity activity, int title, int message,
+                                       DialogInterface.OnClickListener onPositiveClick,
+                                       DialogInterface.OnClickListener onNegativeClick){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setIcon(R.drawable.ic_info)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(R.string.ok, onPositiveClick)
+                .setNegativeButton(R.string.cancel, onNegativeClick)
                 .setCancelable(false);
         dialog = builder.create();
         dialog.show();

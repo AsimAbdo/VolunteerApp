@@ -181,7 +181,7 @@ public class TaskV2Adapter extends RecyclerView.Adapter<TaskV2Adapter.TaskHolder
         public void onBind(int position) {
             MTask task = tasks.get(position);
             bin.taskTitle.setText(task.getDescription().getType());
-            bin.taskStatus.setText(task.getStatus());
+            bin.taskStatus.setText(String.valueOf(task.getDescription().getAmount()));
             bin.taskStartDate.setText(task.getStartDate());
             bin.taskEndDate.setText(task.getEndDate());
             bin.taskAssignTo.setText(task.getAssignedTo());

@@ -4,16 +4,24 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.aau.projects.volunteerapp.R;
 import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
 import edu.aau.projects.volunteerapp.controller.uiadapters.BankAccountsAdapter;
 import edu.aau.projects.volunteerapp.controller.uiadapters.CashFundAdapter;
@@ -21,6 +29,7 @@ import edu.aau.projects.volunteerapp.databinding.ActivityResourcesBinding;
 import edu.aau.projects.volunteerapp.model.BankAccount;
 import edu.aau.projects.volunteerapp.model.CashFund;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
+import edu.aau.projects.volunteerapp.utils.UiUtils;
 
 public class ResourcesActivity extends BaseActivity {
 
@@ -56,7 +65,27 @@ public class ResourcesActivity extends BaseActivity {
         ownerType = bun == null? "" : bun.getString(OWNER_TYPE_EXTRA, "");
 
         api = CustomFirebaseApi.getInstance();
-        adapter = new BankAccountsAdapter(bankAccounts);
+        adapter = new BankAccountsAdapter(bankAccounts, new BankAccountsAdapter.OnAccountClickListener() {
+            @Override
+            public void onAccountClick(BankAccount account) {
+                UiUtils.showAlertDialog(ResourcesActivity.this,
+                        R.string.del_title,
+                        R.string.del_account_message,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteAccount(account);
+                            }
+                        },
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                UiUtils.dismissDialog();
+                            }
+                        }
+                );
+            }
+        });
         bankAccounts = new ArrayList<>();
 
 
@@ -68,6 +97,22 @@ public class ResourcesActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(CreateAccountActivity.makeIntent(getBaseContext(), ownerType, ownerId));
+            }
+        });
+    }
+
+    private void deleteAccount(BankAccount account) {
+        UiUtils.showProgressbar(ResourcesActivity.this);
+        api.deleteBankAccount(account).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                UiUtils.dismissDialog();
+                if (task.isSuccessful()){
+                    UiUtils.makeToast(R.string.account_deleted, getBaseContext());
+                    bankAccounts.remove(account);
+                    adapter.notifyDataSetChanged();
+                } else
+                    UiUtils.makeToast(R.string.error, getBaseContext());
             }
         });
     }

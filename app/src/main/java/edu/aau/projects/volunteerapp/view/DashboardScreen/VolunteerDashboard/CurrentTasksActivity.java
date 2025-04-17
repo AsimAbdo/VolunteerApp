@@ -23,21 +23,32 @@ import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
 import edu.aau.projects.volunteerapp.controller.uiadapters.TaskV2Adapter;
 import edu.aau.projects.volunteerapp.databinding.ActivityCurrentTasksBinding;
 import edu.aau.projects.volunteerapp.model.MTask;
+import edu.aau.projects.volunteerapp.model.Report;
 import edu.aau.projects.volunteerapp.model.Volunteer;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
+import edu.aau.projects.volunteerapp.utils.CustomDialogFragment;
 import edu.aau.projects.volunteerapp.utils.EntriesUtils;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 
-public class CurrentTasksActivity extends BaseActivity implements TaskV2Adapter.OnProvideButtonClickListener {
+public class CurrentTasksActivity extends BaseActivity implements TaskV2Adapter.OnProvideButtonClickListener, CustomDialogFragment.OnDialogButtonPressedListener {
     private static final String VOLUNTEER_ID_EXTRA = "vol_id";
+    private static final String VOLUNTEER_NAME_EXTRA = "vol_name";
     ActivityCurrentTasksBinding bin;
     CustomFirebaseApi api;
     List<MTask> tasks;
+    MTask currentTask;
     TaskV2Adapter adapter;
     int volunteerId = -1;
+    String volunteerName = "";
 
     public static Intent makeIntent(Context context, int volunteerId){
         return new Intent(context, CurrentTasksActivity.class)
+                .putExtra(VOLUNTEER_ID_EXTRA, volunteerId);
+    }
+
+    public static Intent makeIntent(Context context, int volunteerId, String volunteerName){
+        return new Intent(context, CurrentTasksActivity.class)
+                .putExtra(VOLUNTEER_NAME_EXTRA, volunteerName)
                 .putExtra(VOLUNTEER_ID_EXTRA, volunteerId);
     }
     @Override
@@ -52,8 +63,10 @@ public class CurrentTasksActivity extends BaseActivity implements TaskV2Adapter.
         setSupportActionBar(bin.ctToolbar);
 
         Bundle bun = getIntent().getExtras();
-        if (bun != null)
+        if (bun != null) {
             volunteerId = bun.getInt(VOLUNTEER_ID_EXTRA, -1);
+            volunteerName = bun.getString(VOLUNTEER_NAME_EXTRA, "");
+        }
 
         api = CustomFirebaseApi.getInstance();
 
@@ -100,12 +113,17 @@ public class CurrentTasksActivity extends BaseActivity implements TaskV2Adapter.
 
     @Override
     public void onButtonClick(MTask mTask) {
-        finishTask(mTask);
+        UiUtils.showDialogFragment(getSupportFragmentManager(),
+                getString(R.string.generateReportTitle),
+                getString(R.string.generateReportMessage),
+                getString(R.string.btn_save),
+                true
+                );
+        currentTask = mTask;
     }
 
     private void finishTask(MTask mTask){
         mTask.setStatus(EntriesUtils.getStatusList()[3]);
-        UiUtils.showProgressbar(this);
         api.updateTask(mTask).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -138,6 +156,25 @@ public class CurrentTasksActivity extends BaseActivity implements TaskV2Adapter.
                     });
                     tasks.remove(mTask);
                     adapter.setTasks(tasks);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onDialogButtonPressedClick(String text) {
+        if (text.equals("")){
+            UiUtils.makeToast(R.string.empty_fields, getBaseContext());
+            return;
+        }
+        Report report = new Report(text, volunteerName);
+        UiUtils.showProgressbar(this);
+        api.generateReport(report).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                UiUtils.dismissDialogFragment();
+                if (task.isSuccessful()){
+                    finishTask(currentTask);
                 }
             }
         });

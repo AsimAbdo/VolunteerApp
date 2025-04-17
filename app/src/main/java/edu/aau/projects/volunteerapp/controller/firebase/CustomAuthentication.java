@@ -2,6 +2,7 @@ package edu.aau.projects.volunteerapp.controller.firebase;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
@@ -65,5 +66,9 @@ public class CustomAuthentication implements FirebaseAccess {
         else
             message = R.string.wrong_validation;
         return message;
+    }
+
+    public static void reAuthenticate(String email, String password) {
+
     }
 }
