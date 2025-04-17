@@ -25,6 +25,7 @@ import edu.aau.projects.volunteerapp.databinding.ActivityCurrentTasksBinding;
 import edu.aau.projects.volunteerapp.model.MTask;
 import edu.aau.projects.volunteerapp.model.Volunteer;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
+import edu.aau.projects.volunteerapp.utils.EntriesUtils;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 
 public class CurrentTasksActivity extends BaseActivity implements TaskV2Adapter.OnProvideButtonClickListener {
@@ -65,14 +66,14 @@ public class CurrentTasksActivity extends BaseActivity implements TaskV2Adapter.
         bin.ctRvCurrentTasks.setHasFixedSize(true);
 
         List<String> status = new ArrayList<>();
-        status.add(getString(R.string.new_task));
+        status.add(EntriesUtils.getStatusList()[0]);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        getCurrentTasks(getString(R.string.need_resources));
+        getCurrentTasks(EntriesUtils.getStatusList()[2]);
     }
 
     private void getCurrentTasks(String status){
@@ -103,7 +104,7 @@ public class CurrentTasksActivity extends BaseActivity implements TaskV2Adapter.
     }
 
     private void finishTask(MTask mTask){
-        mTask.setStatus(getString(R.string.finishedTask));
+        mTask.setStatus(EntriesUtils.getStatusList()[3]);
         UiUtils.showProgressbar(this);
         api.updateTask(mTask).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

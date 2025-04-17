@@ -19,6 +19,7 @@ import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
 import edu.aau.projects.volunteerapp.databinding.FragmentDonorBinding;
 import edu.aau.projects.volunteerapp.model.Donor;
 import edu.aau.projects.volunteerapp.model.ServiceSeeker;
+import edu.aau.projects.volunteerapp.utils.EntriesUtils;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.AdminDashborad.ResourcesActivity;
 
@@ -67,7 +68,7 @@ public class DonorFragment extends Fragment {
         bin.donorDonate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(DonateActivity.makeIntent(getContext(), getString(R.string.admin), donor.getDonorId()));
+                getActivity().startActivity(DonateActivity.makeIntent(getContext(), EntriesUtils.getRoleList()[4], donor.getDonorId()));
             }
         });
 
@@ -87,7 +88,7 @@ public class DonorFragment extends Fragment {
         bin.donorCashFund.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(ResourcesActivity.makeIntent(getContext(), getActivity().getString(R.string.admin), donor.getDonorId()));
+                getActivity().startActivity(ResourcesActivity.makeIntent(getContext(), EntriesUtils.getRoleList()[3], donor.getDonorId()));
             }
         });
     }

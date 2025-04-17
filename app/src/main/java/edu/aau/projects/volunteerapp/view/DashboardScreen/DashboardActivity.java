@@ -31,6 +31,7 @@ import edu.aau.projects.volunteerapp.databinding.ActivityDashboardBinding;
 import edu.aau.projects.volunteerapp.model.Admin;
 import edu.aau.projects.volunteerapp.model.User;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
+import edu.aau.projects.volunteerapp.utils.EntriesUtils;
 import edu.aau.projects.volunteerapp.utils.ImageUtils;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.AdminDashborad.AdminFragment;
@@ -118,17 +119,17 @@ public class DashboardActivity extends BaseActivity implements NavigationView.On
     private void setFragment(){
         viewHeader(true);
 
-        if (role.equals(getString(R.string.service_seeker))) {
+        if (role.equals(EntriesUtils.getRoleList()[1])) {
             pushFragment(this, new ServiceSeekerHomeFragment(), bin.dashboardContainer.getId(), false);
         }
-        else if (role.equals(getString(R.string.admin))) {
+        else if (role.equals(EntriesUtils.getRoleList()[4])) {
             bin.dashTitle.setText(R.string.admin_title);
             pushFragment(this, new AdminFragment(), bin.dashboardContainer.getId(), false);
         }
-        else if (role.equals(getString(R.string.volunteer))) {
+        else if (role.equals(EntriesUtils.getRoleList()[2])) {
             pushFragment(this, new VolunteerHomeFragment(), bin.dashboardContainer.getId(), false);
         }
-        else if (role.equals(getString(R.string.donor))) {
+        else if (role.equals(EntriesUtils.getRoleList()[3])) {
             pushFragment(this, new DonorFragment(), bin.dashboardContainer.getId(), false);
         }
     }

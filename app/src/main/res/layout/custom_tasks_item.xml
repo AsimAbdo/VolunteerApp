@@ -20,8 +20,14 @@
                 android:id="@+id/task_title"
                 style="@style/Theme.VolunteerApp.mTitleStyle"
                 android:layout_width="match_parent"
+                android:textAlignment="viewStart"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="26dp"
                 android:text="Task Type" />
 
             <TextView
@@ -53,7 +59,9 @@
                 android:id="@+id/ln_dates"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/task_location">
+                android:layout_below="@id/task_location"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp">
 
                 <TextView
                     android:id="@+id/task_startDate"

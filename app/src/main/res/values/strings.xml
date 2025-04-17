@@ -164,5 +164,6 @@
     <string name="finishedTask">Finished Tasks</string>
     <string name="invalid_date">The end date is before the start date</string>
     <string name="invalid_password">Password should be at least 6 character</string>
+    <string name="account_number">"Account Number: "</string>
     <!--    <string name="redundantskill">The Skill Already exists</string>-->
 </resources>

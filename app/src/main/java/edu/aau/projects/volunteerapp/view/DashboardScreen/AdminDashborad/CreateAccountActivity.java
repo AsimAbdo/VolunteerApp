@@ -19,6 +19,7 @@ import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
 import edu.aau.projects.volunteerapp.databinding.ActivityCreateAccountBinding;
 import edu.aau.projects.volunteerapp.model.BankAccount;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
+import edu.aau.projects.volunteerapp.utils.EntriesUtils;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 
 public class CreateAccountActivity extends BaseActivity {
@@ -84,7 +85,7 @@ public class CreateAccountActivity extends BaseActivity {
                 account.setOwnerType(ownerType);
                 account.setBankName(
                         bankName.equals("") ?
-                                bin.accountSpBankName.getSelectedItem().toString()
+                                EntriesUtils.getBankList()[bin.accountSpBankName.getSelectedItemPosition()]
                                 : bankName
                 );
 

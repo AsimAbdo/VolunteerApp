@@ -25,6 +25,7 @@ import edu.aau.projects.volunteerapp.databinding.ActivityAvailableTasksBinding;
 import edu.aau.projects.volunteerapp.model.MTask;
 import edu.aau.projects.volunteerapp.model.Volunteer;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
+import edu.aau.projects.volunteerapp.utils.EntriesUtils;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.AdminDashborad.OnAcceptRejectClickListener;
 
 public class AvailableTasksActivity extends BaseActivity {
@@ -93,7 +94,7 @@ public class AvailableTasksActivity extends BaseActivity {
     }
 
     private void updateTaskStatus(MTask task) {
-        task.setStatus(getString(R.string.need_resources));
+        task.setStatus(EntriesUtils.getStatusList()[2]);
         task.setAssignedTo(getString(R.string.assignToMember));
         task.setAssignedToId(vol_id);
 
@@ -104,7 +105,7 @@ public class AvailableTasksActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        getTasks(getString(R.string.not_taken));
+        getTasks(EntriesUtils.getStatusList()[1]);
     }
 
     private void getTasksByAddress(String address) {

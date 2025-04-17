@@ -17,12 +17,15 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:textAlignment="viewStart"
                 android:id="@+id/user_tv_name"
                 style="@style/Theme.VolunteerApp.mTitleStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_person"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="26dp"
                 android:layout_marginTop="@dimen/_7sdp"
+                android:drawableStart="@drawable/ic_person"
                 android:text="User name" />
 
             <TextView
@@ -31,20 +34,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_tv_name"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="26dp"
+                android:textAlignment="viewStart"
                 android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="@dimen/_4sdp"
                 android:text="test@gmail.com"
                 android:textSize="@dimen/_13ssp" />
 
-                <TextView
-                    android:id="@+id/user_tv_role"
-                    style="@style/Theme.VolunteerApp.mTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_key"
-                    android:drawablePadding="@dimen/_4sdp"
-                    android:layout_below="@id/user_tv_email"
-                    android:text="Volunteer" />
+            <TextView
+                android:id="@+id/user_tv_role"
+                style="@style/Theme.VolunteerApp.mTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_tv_email"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="26dp"
+                android:drawableStart="@drawable/ic_key"
+                android:drawablePadding="@dimen/_4sdp"
+                android:textAlignment="viewStart"
+                android:text="Volunteer" />
 
             <TextView
                     android:id="@+id/user_tv_skills"
@@ -54,7 +63,8 @@
                     android:drawableStart="@drawable/ic_liberary"
                     android:drawablePadding="@dimen/_4sdp"
                     android:layout_below="@id/user_tv_role"
-                    android:text="skills" />
+                    android:text="skills"
+                    android:textAlignment="viewStart"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

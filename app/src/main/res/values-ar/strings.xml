@@ -16,9 +16,9 @@
     <string name="empty_fields">من فضلك املأ كل الحقول</string>
     <string name="password_doesnt_match">كلمة السر لا تتطابق</string>
     <string name="not_connected">Please open Mobile network or connect to wifi to continue</string>
-    <string name="service_seeker">Service Seeker</string>
-    <string name="volunteer">Volunteer</string>
-    <string name="donor">Donor</string>
+    <string name="service_seeker">طالب خدمة</string>
+    <string name="volunteer">متطوع</string>
+    <string name="donor">مانح</string>
     <string name="invalid_email">ايميل غير صحيح</string>
     <string name="invalid_name">الاسم غير صحيح</string>
     <string name="add_et_username">اسم المستخدم</string>
@@ -51,25 +51,25 @@
     <string name="close_drawer">غلق</string>
 
     <string-array name="sign_sp_roles_entries">
-        <item>Select a Role</item>
-        <item>Service Seeker</item>
-        <item>Volunteer</item>
-        <item>Donor</item>
+        <item>اضغط لاختيار دور</item>
+        <item>طالب الخدمة</item>
+        <item>متطوع</item>
+        <item>مانح</item>
     </string-array>
 
     <string-array name="sign_sp_roles_entriesA">
-        <item>Select a Role</item>
-        <item>Service Seeker</item>
-        <item>Volunteer</item>
-        <item>Donor</item>
-        <item>Admin</item>
+        <item>اضغط لاختيار دور</item>
+        <item>طالب الخدمة</item>
+        <item>متطوع</item>
+        <item>مانح</item>
+        <item>مشرف</item>
     </string-array>
 
     <string-array name="bank_name_entries">
-        <item>Omdurman Bank</item>
-        <item>Faisal Bank</item>
-        <item>Al Khortoum Bank</item>
-        <item>Other</item>
+        <item>بنك أمدرمان</item>
+        <item>بنك فيصل</item>
+        <item>بنك الخرطوم</item>
+        <item>غير ذلك</item>
     </string-array>
 
     <string-array name="serviceType">
@@ -89,10 +89,10 @@
 
 
     <string-array name="task_filter">
-        <item>Not verified yet</item>
-        <item>Not taken yet</item>
-        <item>Need resources</item>
-        <item>Finished Tasks</item>
+        <item>لم يتم التأكد منه</item>
+        <item>لم يتم أختياره من قبل المتطوعين</item>
+        <item>يحتاج الى الموارد</item>
+        <item>تم الانتهاء منه</item>
     </string-array>
 
     <string-array name="assignedTo_filter">
@@ -132,8 +132,8 @@
     <string name="assignToMember">Member</string>
     <string name="ct_tv_totalPrice">المبلغ الكلي</string>
     <string name="ct_tv_providedPrice">المبلغ المستلم</string>
-    <string name="ct_btn_postUpdate">Post Update</string>
-    <string name="ct_btn_taskFinished">Finish the Task</string>
+    <string name="ct_btn_postUpdate">نشر تحديث</string>
+    <string name="ct_btn_taskFinished">انهاء الطلب</string>
     <string name="btn_provide">منح</string>
     <string name="donor_tv_donate">تبرع</string>
     <string name="donor_tv_viewPriviousDonates">التبرعات السابقة</string>
@@ -166,5 +166,6 @@
     <string name="finishedTask">Finished Tasks</string>
     <string name="invalid_date">تاريخ الانتهاء يجب ان يكون بعد تاريخ البداية</string>
     <string name="invalid_password">كلمة السر يجب ان تحتوي على ستة احرف على ستة احرف</string>
+    <string name="account_number">رقم الحساب: </string>
     <!--    <string name="redundantskill">The Skill Already exists</string>-->
 </resources>

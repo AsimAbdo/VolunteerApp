@@ -34,6 +34,7 @@ import edu.aau.projects.volunteerapp.model.User;
 import edu.aau.projects.volunteerapp.model.Volunteer;
 import edu.aau.projects.volunteerapp.utils.AppSharedPreferences;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
+import edu.aau.projects.volunteerapp.utils.EntriesUtils;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 
 public class SignUpActivity extends BaseActivity {
@@ -89,7 +90,7 @@ public class SignUpActivity extends BaseActivity {
             }
             String name = bin.signEtName.getText().toString();
             String email = bin.signEtEmail.getText().toString();
-            String role = bin.signSpRole.getSelectedItem().toString();
+            String role = EntriesUtils.getRoleList()[bin.signSpRole.getSelectedItemPosition()];
             String password = bin.signEtPassword.getText().toString();
             String passwordConfirm = bin.signEtPassword.getText().toString();
             Calendar c = Calendar.getInstance();
@@ -139,7 +140,7 @@ public class SignUpActivity extends BaseActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
                     insertByRole(user);
-                    UiUtils.makeToast("done", getBaseContext());
+                    UiUtils.makeToast(R.string.op_done, getBaseContext());
                     sharedPreferences.saveUserId(user);
                     UiUtils.dismissDialog();
                     finish();
@@ -152,7 +153,7 @@ public class SignUpActivity extends BaseActivity {
     }
 
     private void insertByRole(User user){
-        if (user.getRole().equals(getString(R.string.volunteer))){
+        if (user.getRole().equals(EntriesUtils.getRoleList()[2])){
             api.insertVolunteer(new Volunteer(user))
                     .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                         @Override
@@ -166,7 +167,7 @@ public class SignUpActivity extends BaseActivity {
                         }
                     });
 
-        } else if (user.getRole().equals(getString(R.string.service_seeker))){
+        } else if (user.getRole().equals(EntriesUtils.getRoleList()[1])){
             api.insertServiceSeeker(new ServiceSeeker(user))
                     .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                         @Override
@@ -179,7 +180,7 @@ public class SignUpActivity extends BaseActivity {
                             sharedPreferences.saveServiceSeekerId(seekerId);
                         }
                     });
-        } else if (user.getRole().equals(getString(R.string.donor))){
+        } else if (user.getRole().equals(EntriesUtils.getRoleList()[3])){
             api.insertDonor(new Donor(user))
                     .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                         @Override
@@ -194,7 +195,7 @@ public class SignUpActivity extends BaseActivity {
                     });
         }
 
-        else if (user.getRole().equals(getString(R.string.admin))){
+        else if (user.getRole().equals(EntriesUtils.getRoleList()[4])){
             api.insertAdmin(new Admin(user))
                     .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                         @Override

@@ -68,7 +68,10 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
             bin.acItemTvBalance.setText(String.valueOf(account.getBalance()));
             bin.acItemTvAccountNumber.setText(bin.acItemTvAccountNumber.getText() + account.getAccountNumber());
             if (showCheckButton){
-                bin.acItemCbCheck.setVisibility(View.VISIBLE);
+                {
+                    bin.acItemCbCheck.setVisibility(View.VISIBLE);
+                    bin.acItemIvDelete.setVisibility(View.GONE);
+                }
 
                 bin.acItemCbCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -79,6 +82,13 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
                         else {
                             checkedAccounts.remove(account);
                         }
+                    }
+                });
+
+                bin.acItemIvDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO on delete bankAccount
                     }
                 });
             }

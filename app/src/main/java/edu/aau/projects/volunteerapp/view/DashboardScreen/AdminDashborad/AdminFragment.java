@@ -17,6 +17,7 @@ import edu.aau.projects.volunteerapp.R;
 import edu.aau.projects.volunteerapp.databinding.FragmentAdminBinding;
 import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
 import edu.aau.projects.volunteerapp.model.Admin;
+import edu.aau.projects.volunteerapp.utils.EntriesUtils;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.DonorDashboard.ViewUsagesActivity;
 
 public class AdminFragment extends Fragment {
@@ -72,7 +73,7 @@ public class AdminFragment extends Fragment {
         bin.adminResources.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(ResourcesActivity.makeIntent(getContext(), getString(R.string.admin), 1));
+                getActivity().startActivity(ResourcesActivity.makeIntent(getContext(), EntriesUtils.getRoleList()[4], 1));
             }
         });
 

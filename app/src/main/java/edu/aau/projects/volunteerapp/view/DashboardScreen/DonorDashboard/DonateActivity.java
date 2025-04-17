@@ -28,6 +28,7 @@ import edu.aau.projects.volunteerapp.model.BankAccount;
 import edu.aau.projects.volunteerapp.model.Donation;
 import edu.aau.projects.volunteerapp.model.MTask;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
+import edu.aau.projects.volunteerapp.utils.EntriesUtils;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 
 public class DonateActivity extends BaseActivity {
@@ -164,8 +165,8 @@ public class DonateActivity extends BaseActivity {
     }
 
     private void getReceivingEntityAccounts(){
-        if (donorType.equals(getString(R.string.admin))){
-            api.getBankAccounts(getString(R.string.admin)).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (donorType.equals(EntriesUtils.getRoleList()[4])){
+            api.getBankAccounts(donorType).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()){

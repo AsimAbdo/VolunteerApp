@@ -18,6 +18,7 @@ import edu.aau.projects.volunteerapp.R;
 import edu.aau.projects.volunteerapp.controller.firebase.CustomFirebaseApi;
 import edu.aau.projects.volunteerapp.databinding.FragmentVolunteerHomeBinding;
 import edu.aau.projects.volunteerapp.model.Volunteer;
+import edu.aau.projects.volunteerapp.utils.EntriesUtils;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.AdminDashborad.ResourcesActivity;
 
@@ -57,7 +58,7 @@ public class VolunteerHomeFragment extends Fragment {
         bin.volCvResourceManagement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(ResourcesActivity.makeIntent(getContext(), getString(R.string.volunteer), volunteer.getV_id()));
+                startActivity(ResourcesActivity.makeIntent(getContext(), EntriesUtils.getRoleList()[2], volunteer.getV_id()));
             }
         });
 

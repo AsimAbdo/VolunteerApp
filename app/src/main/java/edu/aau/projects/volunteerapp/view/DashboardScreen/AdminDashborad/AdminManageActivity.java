@@ -31,6 +31,7 @@ import edu.aau.projects.volunteerapp.model.MTask;
 import edu.aau.projects.volunteerapp.model.Volunteer;
 import edu.aau.projects.volunteerapp.utils.BaseActivity;
 import edu.aau.projects.volunteerapp.utils.CustomDialogFragment;
+import edu.aau.projects.volunteerapp.utils.EntriesUtils;
 import edu.aau.projects.volunteerapp.utils.UiUtils;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.DonorDashboard.DonateActivity;
 import edu.aau.projects.volunteerapp.view.DashboardScreen.ServiceSeekerDashboard.UploadRequestActivity;
@@ -91,7 +92,7 @@ public class AdminManageActivity extends BaseActivity implements CustomDialogFra
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     taskAdapter.setShowAcceptRejectButtons(position);
-                    getTasks(parent.getSelectedItem().toString());
+                    getTasks(EntriesUtils.getStatusList()[position]);
                 }
 
                 @Override
@@ -167,23 +168,23 @@ public class AdminManageActivity extends BaseActivity implements CustomDialogFra
                 }
                  else {
                     //rejected
-                    task.setStatus(getString(R.string.reject));
+                    task.setStatus(EntriesUtils.getReject());
                     updateTask(task);
                 }
             }
         });
         tasks = new ArrayList<>();
-        if (status.equals(getString(R.string.need_resources))) {
+        if (status.equals(EntriesUtils.getStatusList()[2])) {
             taskAdapter = new TaskV2Adapter(tasks, TaskV2Adapter.TASK_NEED_RESOURCE_VIEW);
             taskAdapter.setOnProvideButtonClickListener(new TaskV2Adapter.OnProvideButtonClickListener() {
                 @Override
                 public void onButtonClick(MTask task) {
-                    startActivity(DonateActivity.makeIntent(getBaseContext(), getString(R.string.volunteer),
+                    startActivity(DonateActivity.makeIntent(getBaseContext(), EntriesUtils.getRoleList()[2],
                             adminId, task.getAssignedToId(), task));
                 }
             });
         }
-        else if (status.equals(getString(R.string.finishedTask))) {
+        else if (status.equals(EntriesUtils.getStatusList()[3])) {
             taskAdapter = new TaskV2Adapter(tasks, TaskV2Adapter.TASK_VIEW);
             taskAdapter.setShowAcceptRejectButtons(1);
         }
@@ -231,7 +232,7 @@ public class AdminManageActivity extends BaseActivity implements CustomDialogFra
     public void onDialogButtonPressedClick(String text) {
         double amount = Double.parseDouble(text);
         mTask.getDescription().setAmount(amount);
-        mTask.setStatus(getString(R.string.not_taken));
+        mTask.setStatus(EntriesUtils.getStatusList()[1]);
         updateTask(mTask);
         UiUtils.dismissDialogFragment();
     }
